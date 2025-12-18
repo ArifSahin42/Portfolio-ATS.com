@@ -765,7 +765,6 @@
           <a href="#darktech">Dark Tech</a>
           <a href="#internship">Objective Platform</a>
           <a href="#reviews">Reviews</a>
-          <a href="#evidence">Visual Evidence</a>
           <a href="#tags">Categories</a>
           <a href="#relevance">Relevance</a>
           <a href="#cv">CV</a>
@@ -858,7 +857,7 @@
               <div class="Card-shadow"></div>
               <div class="Card-shadow"></div>
               <!-- UPDATED: now uses a1.png -->
-              <div class="Card-image" style="background-image:url('images/a1.png')"></div>
+              <div class="Card-image" style="background-image:url('a7.png')"></div>
             </div>
             <div class="Card-title"><span> Project Dark Tech</span></div>
             <div class="Card-explore"><span>Open detail view</span></div>
@@ -890,6 +889,29 @@
           <li>QA testen in verschillende environments</li>
         </ul>
       </section>
+
+       <section class="Grid" aria-label="Dark Tech gallery grid">
+          <!-- Card 2 -->
+          <a class="Card" href="javascript:void(0)" onclick="openGallery(2)" id="card-2" aria-label="Open gallery item 2">
+            <div class="Card-thumb">
+              <div class="Card-shadow"></div>
+              <div class="Card-shadow"></div>
+              <div class="Card-shadow"></div>
+              <!-- UPDATED: now uses a1.png -->
+              <div class="Card-image" style="background-image:url('a8.png')"></div>
+            </div>
+            <div class="Card-title"><span> Objective Platform</span></div>
+            <div class="Card-explore"><span>Open detail view</span></div>
+            <button class="Card-button" type="button">View more</button>
+          </a>
+        </section>
+        
+        <!-- ✅ NEW: Researches button (same style as other buttons) -->
+        <div style="margin-top: 18px;">
+          <a href="#" style="border-bottom:none;">
+            <button type="button">Documents</button>
+          </a>
+        </div>
 
       <section id="reviews">
         <h2>Reviews</h2>
@@ -1021,6 +1043,26 @@
     </div>
   </section>
 
+  <!-- UPDATED: Gallery uses a9.png .. a14.png -->
+  <section class="Gallery" id="gallery-2" aria-hidden="true">
+    <div class="Gallery-header">
+      <a class="Gallery-close" onclick="closeAll()" aria-label="Close gallery">×</a>
+    </div>
+
+    <div class="Gallery-images">
+      <div class="Gallery-left">
+        <div class="Gallery-image" style="background-image:url('a9.png')"></div>
+        <div class="Gallery-image" style="background-image:url('a10.png')"></div>
+      </div>
+      <div class="Gallery-image Gallery-image--primary" style="background-image:url('a11.png')"></div>
+    </div>
+
+    <div class="Gallery-images">
+      <div class="Gallery-image" style="background-image:url('a12.png')"></div>
+      <div class="Gallery-image" style="background-image:url('a13.png')"></div>
+      <div class="Gallery-image" style="background-image:url('a14.png')"></div>
+    </div>
+  </section>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
