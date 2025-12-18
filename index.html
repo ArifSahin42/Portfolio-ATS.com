@@ -6,7 +6,7 @@
   <title>Arif Sahin Portfolio</title>
   <meta name="description" content="Portfolio van Arif Sahin (HBO-ICT) — Software Engineer / QA Engineer / Creative Technologist" />
 
-  <!-- Google Font (as requested) -->
+  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap" rel="stylesheet">
@@ -196,7 +196,7 @@
     }
 
     /* ----------------------------
-       TYPEWRITER / REVEAL (MULTI-LINE SAFE)
+       TYPEWRITER / REVEAL
        Applied to main <p> and <li>
     -----------------------------*/
     main p,
@@ -206,18 +206,15 @@
       display: block;
       overflow: hidden;
       clip-path: inset(0 100% 0 0);
-      animation: revealText 1.75s ease-out both; /* ~50% slower */
+      animation: revealText 1.75s ease-out both;
     }
 
-    /* Stagger paragraphs a little (cleaner feel) */
     main section p:nth-of-type(1){ animation-delay: .12s; }
     main section p:nth-of-type(2){ animation-delay: .30s; }
     main section p:nth-of-type(3){ animation-delay: .48s; }
 
-    /* Stagger list items slightly so they don't pop all at once */
     main li{ animation-delay: .22s; }
 
-    /* Subtle caret during reveal (only on paragraphs) */
     main p::after{
       content: "";
       position: absolute;
@@ -227,9 +224,12 @@
       right: 0;
       background: rgba(255,255,255,.65);
       opacity: 0;
+      /* NOTE: if you removed blinking earlier, keep only caretIn */
+      animation: caretIn 1.75s ease-out both;
     }
 
-  
+    main li::after{ content: none; }
+
     @keyframes revealText{
       from { clip-path: inset(0 100% 0 0); }
       to   { clip-path: inset(0 0 0 0); }
@@ -241,11 +241,6 @@
       100% { opacity: 0; }
     }
 
-    @keyframes caretBlink{
-      0%, 49% { opacity: 1; }
-      50%, 100% { opacity: 0; }
-    }
-
     @media (prefers-reduced-motion: reduce){
       main p,
       main li{
@@ -253,6 +248,69 @@
         clip-path: none;
       }
       main p::after{ display:none; }
+    }
+
+    /* ----------------------------
+       ABOUT AVATAR LAYOUT
+    -----------------------------*/
+    .about-grid{
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+    @media (max-width: 700px){
+      .about-grid{
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    .avatar-link{
+      display: inline-block;
+      border-bottom: none;
+    }
+    .avatar-link:hover{ border-bottom: none; }
+
+    .avatar{
+      height: 180px;
+      width: 180px;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .avatar img{
+      border-radius: 9999px;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes pulse {
+      to {
+        opacity: 0;
+        transform: scale(1);
+      }
+    }
+
+    .avatar::before,
+    .avatar::after{
+      content: "";
+      position: absolute;
+      inset: -18%;
+      border: #fff solid 4px;
+      border-radius: 9999px;
+      opacity: .55;
+      transform: scale(0.75);
+      animation: pulse 2.6s linear infinite;
+      z-index: 1;
+      box-sizing: border-box;
+    }
+
+    .avatar::after{
+      animation-delay: 1.3s;
     }
 
     /* ----------------------------
@@ -268,7 +326,7 @@
     .rating-system1 {
       display: inline-block;
       position: relative;
-      width: 140px; /* room for 5 bars */
+      width: 140px;
       height: 22px;
     }
 
@@ -282,8 +340,8 @@
       background: #777;
       margin: 4px;
       transition: none;
-      cursor: default;          /* locked */
-      pointer-events: none;     /* locked */
+      cursor: default;
+      pointer-events: none;
       position: relative;
     }
 
@@ -323,249 +381,266 @@
     <div class="flow three"></div>
   </div>
 
-  <header>
-    <div class="wrap">
-      <h1>ARIF SAHIN</h1>
-      <p class="subtitle">
-        (HBO-ICT) — Software Engineer / QA Engineer / Creative Technologist
-        <br />
-        <span class="muted">Ik bouw en test interactieve applicaties met focus op gebruikerservaring, gedrag en kwaliteit.</span>
-      </p>
+<header>
+  <div class="wrap">
+    <h1>ARIF SAHIN</h1>
+    <p class="subtitle">
+      (HBO-ICT) — Software Engineer / QA Engineer / Creative Technologist
+      <br />
+      <span class="muted">Ik bouw en test interactieve applicaties met focus op gebruikerservaring, gedrag en kwaliteit.</span>
+    </p>
 
-      <nav>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#darktech">Dark Tech</a>
-        <a href="#internship">Objective Platform</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#evidence">Visual Evidence</a>
-        <a href="#tags">Categories</a>
-        <a href="#cv">CV</a>
-      </nav>
-    </div>
-  </header>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#darktech">Dark Tech</a>
+      <a href="#internship">Objective Platform</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#evidence">Visual Evidence</a>
+      <a href="#tags">Categories</a>
+      <a href="#relevance">Relevance</a>
+      <a href="#cv">CV</a>
+    </nav>
+  </div>
+</header>
 
-  <main class="wrap">
+<main class="wrap">
 
-    <section id="about">
-      <h2>Who I Am & What I Bring</h2>
-      <p>
-        Ik ben Arif Sahin, 3e-jaars HBO-ICT student aan de Hogeschool van Amsterdam (HvA).
-        In projecten neem ik vaak de rol op me van tester/quality-minded engineer: ik zorg dat een idee niet alleen werkt,
-        maar ook duidelijk en prettig is voor gebruikers.
-      </p>
-    </section>
+  <section id="about">
+    <h2>Who I Am & What I Bring</h2>
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <div class="grid">
-        <div>
-          <h3>Technical & Research Skills</h3>
-          <ul>
-            <li>User research & usability testing</li>
-            <li>QA testing (functioneel, gebruikservaring, iteratief verbeteren)</li>
-            <li>Interaction & experience design</li>
-            <li>Prototyping (low–mid fidelity)</li>
-            <li>Kwalitatieve data-analyse (observaties, feedback, patronen)</li>
-          </ul>
+    <div class="about-grid">
+      <a class="avatar-link" href="https://www.linkedin.com/in/arif-sahin-91b785232/" target="_blank" rel="noopener" aria-label="Open LinkedIn profile">
+        <div class="avatar">
+          <img src="IMG_3928.png" alt="Arif Sahin">
         </div>
-        <div>
-          <h3>Professional Skills</h3>
-          <ul>
-            <li>Analytisch denken</li>
-            <li>Kritisch reflecteren</li>
-            <li>Zelfstandig werken</li>
-            <li>Feedback verwerken en vertalen naar actie</li>
-            <li>Communicatie met team en stakeholders</li>
-            <li>Java/Typescript</li>
-            <li>HTML/CSS</li>
-          </ul>
-        </div>
+      </a>
+
+      <div>
+        <p>
+          Ik ben Arif Sahin, 3e-jaars HBO-ICT student aan de Hogeschool van Amsterdam (HvA).
+          In projecten neem ik vaak de rol op me van tester/quality-minded engineer: ik zorg dat een idee niet alleen werkt,
+          maar ook duidelijk en prettig is voor gebruikers.
+        </p>
+        <p class="muted">
+          Deze pagina is gecreëerd voor een overzicht van mijn projecten, rollen, bewijstukken en wat ik daaruit heb gehaald.
+          Kwaliteit boven kwantiteit.
+        </p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <p class="muted">Een selectie van projecten die het beste laten zien wat ik kan en hoe ik werk.</p>
-      <ul>
-        <li><a href="#darktech">Dark Tech Studio</a> - interactieve ervaring, testen, gedrag & ethiek</li>
-        <li><a href="#internship">Internship (Objective Platform)</a> - software engineering, professionaliteit, research</li>
-      </ul>
-    </section>
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="grid">
+      <div>
+        <h3>Technical & Research Skills</h3>
+        <ul>
+          <li>User research & usability testing</li>
+          <li>QA testing (functioneel, gebruikservaring, iteratief verbeteren)</li>
+          <li>Interaction & experience design</li>
+          <li>Prototyping (low–mid fidelity)</li>
+          <li>Kwalitatieve data-analyse (observaties, feedback, patronen)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Professional Skills</h3>
+        <ul>
+          <li>Analytisch denken</li>
+          <li>Kritisch reflecteren</li>
+          <li>Zelfstandig werken</li>
+          <li>Feedback verwerken en vertalen naar actie</li>
+          <li>Communicatie met team en stakeholders</li>
+          <li>Java/Typescript</li>
+          <li>HTML/CSS</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <section id="darktech">
-      <h2>Dark Tech Studio</h2>
-      <p>
-        Binnen Dark Tech werkte ik aan een interactieve game ervaring die bewustwording creëert rondom
-        sociale isolatie, afleiding en keuzes in de openbare ruimte.
-      </p>
+  <section id="projects">
+    <h2>Projects</h2>
+    <p class="muted">Een selectie van projecten die het beste laten zien wat ik kan en hoe ik werk.</p>
+    <ul>
+      <li><a href="#darktech">Dark Tech Studio</a> - interactieve ervaring, testen, gedrag & ethiek</li>
+      <li><a href="#internship">Internship (Objective Platform)</a> - software engineering, professionaliteit, research</li>
+    </ul>
+  </section>
 
-      <h3>My Role & Contributions</h3>
-      <ul>
-        <li>Testopzet en uitvoering (observaties, enquêtes, scenario’s)</li>
-        <li>Verbeterpunten formuleren en terugkoppelen</li>
-        <li>Meedenken over interactiemomenten (knoppen), scenes en audio-ervaring</li>
-      </ul>
+  <section id="darktech">
+    <h2>Dark Tech Studio</h2>
+    <p>
+      Binnen Dark Tech werkte ik aan een interactieve game ervaring die bewustwording creëert rondom
+      sociale isolatie, afleiding en keuzes in de openbare ruimte.
+    </p>
 
-      <h3>What I Learned From This Project</h3>
-      <ul>
-        <li>Hoe je een prototype testbaar maakt zonder gebruikers te sturen</li>
-        <li>Hoe je feedback omzet in concrete verbeteringen</li>
-        <li>Hoe interactie, timing en audio samen de ervaring dragen</li>
-      </ul>
-    </section>
+    <h3>My Role & Contributions</h3>
+    <ul>
+      <li>Testopzet en uitvoering (observaties, enquêtes, scenario’s)</li>
+      <li>Verbeterpunten formuleren en terugkoppelen</li>
+      <li>Meedenken over interactiemomenten (knoppen), scenes en audio-ervaring</li>
+    </ul>
 
-    <section id="internship">
-      <h2>Objective Platform</h2>
-      <p>
-        Tijdens mijn stage werkte ik als QA Engineering Intern. Ik werd beoordeeld als zelfstandig,
-        professioneel en sterk in analyse en reflectie.
-      </p>
+    <h3>What I Learned From This Project</h3>
+    <ul>
+      <li>Hoe je een prototype testbaar maakt zonder gebruikers te sturen</li>
+      <li>Hoe je feedback omzet in concrete verbeteringen</li>
+      <li>Hoe interactie, timing en audio samen de ervaring dragen</li>
+    </ul>
+  </section>
 
-      <h3>What This Experience Added</h3>
-      <ul>
-        <li>Professionele werkwijze en ownership</li>
-        <li>Communicatie en samenwerking in een productomgeving</li>
-        <li>Opstellen van testplannen</li>
-        <li>QA testen in verschillende environments</li>
-      </ul>
-    </section>
+  <section id="internship">
+    <h2>Objective Platform</h2>
+    <p>
+      Tijdens mijn stage werkte ik als QA Engineering Intern. Ik werd beoordeeld als zelfstandig,
+      professioneel en sterk in analyse en reflectie.
+    </p>
 
-    <section id="reviews">
-      <h2>Reviews</h2>
-      <ul>
-        <li>
-          <strong>Valeria Demie</strong> - Lead QA Engineer (Objective Platform)
-          <br><br>
-          Beoordeling:
-          Arif doet zijn werk zelfstandig en professioneel. Tijdens de stage nam hij steeds meer eigenaarschap over zijn taken,
-          had hij minder begeleiding nodig en ging hij flexibel om met veranderingen en feedback. Zijn bijdragen zijn als praktisch
-          en waardevol ervaren binnen het team.
-          <br><br>
-          Sterkste punten:
-          Zelfstandigheid, professionele houding, analytisch werken, omgaan met feedback, rustige houding onder druk.
-          <br><br>
+    <h3>What This Experience Added</h3>
+    <ul>
+      <li>Professionele werkwijze en ownership</li>
+      <li>Communicatie en samenwerking in een productomgeving</li>
+      <li>Opstellen van testplannen</li>
+      <li>QA testen in verschillende environments</li>
+    </ul>
+  </section>
 
-          <div class="review-rating" aria-label="Rating Valeria Demie: 5 out of 5">
-            <div class="rating-system1" aria-hidden="true">
-              <input type="radio" name="valeria_rate" id="valeria_star5" checked />
-              <label for="valeria_star5"></label>
+  <section id="reviews">
+    <h2>Reviews</h2>
+    <ul>
+      <li>
+        <strong>Valeria Demie</strong> - Lead QA Engineer (Objective Platform)
+        <br><br>
+        Beoordeling:
+        Arif doet zijn werk zelfstandig en professioneel. Tijdens de stage nam hij steeds meer eigenaarschap over zijn taken,
+        had hij minder begeleiding nodig en ging hij flexibel om met veranderingen en feedback. Zijn bijdragen zijn als praktisch
+        en waardevol ervaren binnen het team.
+        <br><br>
+        Sterkste punten:
+        Zelfstandigheid, professionele houding, analytisch werken, omgaan met feedback, rustige houding onder druk.
 
-              <input type="radio" name="valeria_rate" id="valeria_star4" />
-              <label for="valeria_star4"></label>
+        <div class="review-rating" aria-label="Rating Valeria Demie: 5 out of 5">
+          <div class="rating-system1" aria-hidden="true">
+            <input type="radio" name="valeria_rate" id="valeria_star5" checked />
+            <label for="valeria_star5"></label>
 
-              <input type="radio" name="valeria_rate" id="valeria_star3" />
-              <label for="valeria_star3"></label>
+            <input type="radio" name="valeria_rate" id="valeria_star4" />
+            <label for="valeria_star4"></label>
 
-              <input type="radio" name="valeria_rate" id="valeria_star2" />
-              <label for="valeria_star2"></label>
+            <input type="radio" name="valeria_rate" id="valeria_star3" />
+            <label for="valeria_star3"></label>
 
-              <input type="radio" name="valeria_rate" id="valeria_star1" />
-              <label for="valeria_star1"></label>
-            </div>
-            <span class="rating-value">5/5</span>
+            <input type="radio" name="valeria_rate" id="valeria_star2" />
+            <label for="valeria_star2"></label>
+
+            <input type="radio" name="valeria_rate" id="valeria_star1" />
+            <label for="valeria_star1"></label>
           </div>
-        </li>
-<br><br>
-<br><br>
-        <li>
-          <strong>Rob Kiebert</strong> - Assessor and IT teacher (HvA)
-          <br><br>
-          Beoordeling:
-          Arif werkt duidelijk gestructureerd, methodisch onderbouwend en professioneel. Hij is goed met het oplossen van probleemstellingen,
-          onderzoeksvragen en conclusies en sluit ze logisch op elkaar aan.
-          <br><br>
-          Sterkste punten:
-          Structuur, helder schrijven, juiste bronverwijzing, analytische onderbouwing.
+          <span class="rating-value">5/5</span>
+        </div>
+      </li>
 
-          <div class="review-rating" aria-label="Rating Rob Kiebert: 4 out of 5">
-            <div class="rating-system1" aria-hidden="true">
-              <input type="radio" name="rob_rate" id="rob_star5" />
-              <label for="rob_star5"></label>
+      <li>
+        <strong>Rob Kiebert</strong> - Assessor and IT teacher (HvA)
+        <br><br>
+        Beoordeling:
+        Arif werkt duidelijk gestructureerd, methodisch onderbouwend en professioneel. Hij is goed met het oplossen van probleemstellingen,
+        onderzoeksvragen en conclusies en sluit ze logisch op elkaar aan.
+        <br><br>
+        Sterkste punten:
+        Structuur, helder schrijven, juiste bronverwijzing, analytische onderbouwing.
 
-              <input type="radio" name="rob_rate" id="rob_star4" checked />
-              <label for="rob_star4"></label>
+        <div class="review-rating" aria-label="Rating Rob Kiebert: 4 out of 5">
+          <div class="rating-system1" aria-hidden="true">
+            <input type="radio" name="rob_rate" id="rob_star5" />
+            <label for="rob_star5"></label>
 
-              <input type="radio" name="rob_rate" id="rob_star3" />
-              <label for="rob_star3"></label>
+            <input type="radio" name="rob_rate" id="rob_star4" checked />
+            <label for="rob_star4"></label>
 
-              <input type="radio" name="rob_rate" id="rob_star2" />
-              <label for="rob_star2"></label>
+            <input type="radio" name="rob_rate" id="rob_star3" />
+            <label for="rob_star3"></label>
 
-              <input type="radio" name="rob_rate" id="rob_star1" />
-              <label for="rob_star1"></label>
-            </div>
-            <span class="rating-value">4/5</span>
+            <input type="radio" name="rob_rate" id="rob_star2" />
+            <label for="rob_star2"></label>
+
+            <input type="radio" name="rob_rate" id="rob_star1" />
+            <label for="rob_star1"></label>
           </div>
-        </li>
-      </ul>
-    </section>
+          <span class="rating-value">4/5</span>
+        </div>
+      </li>
+    </ul>
+  </section>
 
-    <section id="evidence">
-      <h2>Visual Evidence & Proof</h2>
-      <p class="muted">
-        Bewijs (visuals, screenshots, resultaten) om mijn rollen en skills direct aantoonbaar te maken.
-        Voeg hier je afbeeldingen en documenten toe als links of thumbnails.
-      </p>
+  <section id="evidence">
+    <h2>Visual Evidence & Proof</h2>
+    <p class="muted">
+      Bewijs (visuals, screenshots, resultaten) om mijn rollen en skills direct aantoonbaar te maken.
+      Voeg hier je afbeeldingen en documenten toe als links of thumbnails.
+    </p>
 
-      <h3>Dark Tech Evidence</h3>
-      <ul>
-        <li>Testresultaten (grafieken: schermafstand, knoprespons, logica keuzes)</li>
-        <li>Testdocumenten (schermopstelling, knoppen, keuzemomenten)</li>
-        <li>Scene & audio-plannen (breakdowns, interaction/audio planning)</li>
-      </ul>
+    <h3>Dark Tech Evidence</h3>
+    <ul>
+      <li>Testresultaten (grafieken: schermafstand, knoprespons, logica keuzes)</li>
+      <li>Testdocumenten (schermopstelling, knoppen, keuzemomenten)</li>
+      <li>Scene & audio-plannen (breakdowns, interaction/audio planning)</li>
+    </ul>
 
-      <h3>Internship Evidence</h3>
-      <ul>
-        <li>Final assessment workplace placement (screenshots)</li>
-        <li>Assessment research report internship (screenshots)</li>
-      </ul>
-    </section>
+    <h3>Internship Evidence</h3>
+    <ul>
+      <li>Final assessment workplace placement (screenshots)</li>
+      <li>Assessment research report internship (screenshots)</li>
+    </ul>
+  </section>
 
-    <section id="tags">
-      <h2>Categories</h2>
-      <ul>
-        <li>#Creative Technologist</li>
-        <li>#User Research</li>
-        <li>#Usability Testing</li>
-        <li>#QA</li>
-        <li>#Interaction Design</li>
-        <li>#Ethical Design</li>
-        <li>#Prototyping</li>
-        <li>#Java/Typescript</li>
-      </ul>
-    </section>
+  <section id="tags">
+    <h2>Categories</h2>
+    <ul>
+      <li>#Creative Technologist</li>
+      <li>#User Research</li>
+      <li>#Usability Testing</li>
+      <li>#QA</li>
+      <li>#Interaction Design</li>
+      <li>#Ethical Design</li>
+      <li>#Prototyping</li>
+      <li>#Java/Typescript</li>
+    </ul>
+  </section>
 
-    <section id="relevance">
-      <h2>Why These Skills & Experiences Matter</h2>
-      <p>
-        Ik kies projecten waarin ik niet alleen kan bouwen, maar vooral kan laten zien wat kwaliteit leveren is:
-        door te testen, te verbeteren en de ervaring scherper te maken voor gebruikers. Dit helpt mij om sterker te worden
-        als Software Engineer en als Creative Technologist in verschillende werkomgevingen.
-      </p>
-    </section>
+  <section id="relevance">
+    <h2>Why These Skills & Experiences Matter</h2>
+    <p>
+      Ik kies projecten waarin ik niet alleen kan bouwen, maar vooral kan laten zien hoe ik kwaliteit lever:
+      door te testen, te verbeteren en de ervaring scherp te maken voor gebruikers. Dit helpt mij om sterker te worden
+      als Software Engineer en als Creative Technologist in verschillende werkomgevingen.
+    </p>
+  </section>
 
-    <section id="cv">
-      <h2>CV & Links</h2>
-      <a href="https://www.linkedin.com/in/arif-sahin-91b785232/" target="_blank" rel="noopener">
-  <button>LinkedIn</button>
-</a>
-     <a href="Arif Sahin.pdf" download="Arif_Sahin_CV.pdf">
-  <button>Download CV</button>
-</a>
+  <section id="cv">
+    <h2>CV & Links</h2>
 
-    </section>
+    <!-- LinkedIn: direct profile -->
+    <a href="https://www.linkedin.com/in/arif-sahin-91b785232/" target="_blank" rel="noopener" style="border-bottom:none;">
+      <button type="button">LinkedIn</button>
+    </a>
 
-  </main>
+    <!-- CV: download (change filename if your PDF is named differently in repo) -->
+    <a href="Arif Sahin.pdf" download="Arif_Sahin_CV.pdf" style="border-bottom:none;">
+      <button type="button">Download CV</button>
+    </a>
+  </section>
 
-  <footer>
-    © <span id="year"></span> Arif Sahin
-  </footer>
+</main>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<footer>
+  © <span id="year"></span> Arif Sahin
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
