@@ -504,30 +504,16 @@
     }
 
     .Card-image,
-    .Card-shadow{
-      position: absolute;
-      inset: 0;
-      transition: all .22s cubic-bezier(0.42, 0.0, 0.58, 1.0);
-      border-radius: 14px;
-      margin: 12px;
-    }
+    .Card-shadow:nth-child(1),
+.Card-shadow:nth-child(2),
+.Card-shadow:nth-child(3){
+  background-image: url('a7.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
 
-    .Card-shadow { opacity: .8; }
-    .Card-shadow:nth-child(1){
-      opacity: .55;
-      background-color: rgba(103,58,183,0.55);
-      transition-delay: .07s;
-    }
-    .Card-shadow:nth-child(2){
-      opacity: .6;
-      background-color: rgba(63,81,181,0.55);
-      transition-delay: .05s;
-    }
-    .Card-shadow:nth-child(3){
-      opacity: .65;
-      background-color: rgba(33,150,243,0.55);
-      transition-delay: .03s;
-    }
 
     .Card-image{
       position: relative;
@@ -728,22 +714,6 @@
       .Gallery-image{ min-height: 140px; }
       .Gallery-image--primary{ min-height: 240px; }
     }
-
-    /* ==========================================================
-       FIX: make ALL 6 gallery tiles same size as the large one
-    ========================================================== */
-    .Gallery-image,
-    .Gallery-image--primary{
-      flex: 1 1 0;
-      min-height: 260px;
-    }
-
-    @media (max-width: 860px){
-      .Gallery-image,
-      .Gallery-image--primary{
-        min-height: 240px;
-      }
-    }
   </style>
 </head>
 
@@ -876,6 +846,7 @@
               <div class="Card-shadow"></div>
               <div class="Card-shadow"></div>
               <div class="Card-shadow"></div>
+              <!-- UPDATED: now uses a1.png -->
               <div class="Card-image" style="background-image:url('images/a1.png')"></div>
             </div>
             <div class="Card-title"><span> Project Dark Tech</span></div>
@@ -1029,7 +1000,7 @@
 
   </div><!-- /#page -->
 
-  <!-- Gallery -->
+  <!-- UPDATED: Gallery uses a1.png .. a6.png -->
   <section class="Gallery" id="gallery-1" aria-hidden="true">
     <div class="Gallery-header">
       <a class="Gallery-close" onclick="closeAll()" aria-label="Close gallery">×</a>
@@ -1088,10 +1059,12 @@
       document.body.style.overflow = '';
     }
 
+    // Close on ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeAll();
     });
 
+    // Close if you click outside the images (overlay background)
     document.addEventListener('click', (e) => {
       const active = document.querySelector('.Gallery.Gallery--active');
       if (!active) return;
