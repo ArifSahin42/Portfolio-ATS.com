@@ -849,46 +849,21 @@
           <li>Hoe interactie, timing en audio samen de ervaring dragen</li>
         </ul>
 
-       <section class="Grid" aria-label="Dark Tech gallery grid">
-  <!-- Card 1 -->
-  <a class="Card"
-     href="#"
-     onclick="openGallery(event, 1)"
-     id="card-1"
-     aria-label="Open gallery item 1">
-
-    <div class="Card-thumb">
-      <div class="Card-shadow"></div>
-      <div class="Card-shadow"></div>
-      <div class="Card-shadow"></div>
-
-      <div class="Card-image" style="background-image:url('/a7.png')"></div>
-    </div>
-
-    <div class="Card-title"><span>Project Dark Tech</span></div>
-    <div class="Card-explore"><span>Open detail view</span></div>
-    <button class="Card-button" type="button">View more</button>
-  </a>
-</section>
-
-<!-- ✅ GALLERY MOET APART STAAN, NIET BINNEN DE <a> -->
-<section class="Gallery" id="gallery-1" aria-hidden="true">
-  <div class="Gallery-header">
-    <button class="Gallery-close" type="button" onclick="closeAll()">×</button>
-  </div>
-
-  <div class="Gallery-images">
-    <div class="Gallery-left">
-      <div class="Gallery-image"></div>
-      <div class="Gallery-image"></div>
-    </div>
-
-    <!-- ✅ DIT IS DE “START / PRIMARY” IMAGE -->
-    <div class="Gallery-image Gallery-image--primary"
-         style="background-image:url('/a7.png')"></div>
-  </div>
-</section>
-
+        <section class="Grid" aria-label="Dark Tech gallery grid">
+          <!-- Card 1 -->
+          <a class="Card" href="javascript:void(0)" onclick="openGallery(1)" id="card-1" aria-label="Open gallery item 1">
+            <div class="Card-thumb">
+              <div class="Card-shadow"></div>
+              <div class="Card-shadow"></div>
+              <div class="Card-shadow"></div>
+              <!-- UPDATED: now uses a1.png -->
+              <div class="Card-image" style="background-image:url('a7.png')"></div>
+            </div>
+            <div class="Card-title"><span> Project Dark Tech</span></div>
+            <div class="Card-explore"><span>Open detail view</span></div>
+            <button class="Card-button" type="button">View more</button>
+          </a>
+        </section>
 
         <!-- ✅ NEW: Researches button (same style as other buttons) -->
         <div style="margin-top: 18px;">
@@ -1090,94 +1065,56 @@
     </div>
   </section>
   <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-  window.addEventListener("load", () => {
-    const loader = document.getElementById("loader");
-    setTimeout(() => {
-      loader.style.opacity = "0";
-      document.body.classList.add("loaded");
-      setTimeout(() => loader.remove(), 1000);
-    }, 5000);
-  });
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
 
-  // Open gallery (works with onclick="openGallery(1)" OR onclick="openGallery(event,1)")
-  function openGallery(eOrId, maybeId) {
-    // Support both signatures:
-    // openGallery(1)
-    // openGallery(event, 1)
-    let id;
-    let evt = null;
+      setTimeout(() => {
+        loader.style.opacity = "0";
+        document.body.classList.add("loaded");
+        setTimeout(() => loader.remove(), 1000);
+      }, 5000);
+    });
 
-    if (typeof eOrId === "number") {
-      id = eOrId;
-    } else {
-      evt = eOrId;
-      id = maybeId;
-    }
-
-    if (evt && typeof evt.preventDefault === "function") evt.preventDefault();
-
-    closeAll();
-
-    const gallery = document.getElementById("gallery-" + id);
-    const card = document.getElementById("card-" + id);
-
-    if (!gallery) {
-      console.warn("Gallery not found:", "gallery-" + id);
-      return;
-    }
-
-    // ✅ OPTIONAL (handig): copy card image → primary gallery image
-    // Als je gallery images al hardcoded zijn (zoals a1..a6), mag je dit weglaten.
-    if (card) {
-      const cardImg = card.querySelector(".Card-image");
-      const primary = gallery.querySelector(".Gallery-image--primary");
-      if (cardImg && primary && cardImg.style.backgroundImage) {
-        // Zet alleen als primary nog leeg is
-        const current = getComputedStyle(primary).backgroundImage;
-        if (!current || current === "none") {
-          primary.style.backgroundImage = cardImg.style.backgroundImage;
-        }
+    function openGallery(id) {
+      closeAll();
+      const gallery = document.getElementById('gallery-' + id);
+      const card = document.getElementById('card-' + id);
+      if (gallery) {
+        gallery.classList.add('Gallery--active');
+        gallery.setAttribute('aria-hidden', 'false');
       }
+      if (card) card.classList.add('Card--active');
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
     }
 
-    gallery.classList.add("Gallery--active");
-    gallery.setAttribute("aria-hidden", "false");
-    if (card) card.classList.add("Card--active");
+    function closeAll() {
+      const galleryActv = document.querySelector('.Gallery.Gallery--active');
+      const cardActv = document.querySelector('.Card.Card--active');
+      if (galleryActv) {
+        galleryActv.classList.remove('Gallery--active');
+        galleryActv.setAttribute('aria-hidden', 'true');
+      }
+      if (cardActv) cardActv.classList.remove('Card--active');
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
 
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeAll() {
-    document.querySelectorAll(".Gallery.Gallery--active").forEach(g => {
-      g.classList.remove("Gallery--active");
-      g.setAttribute("aria-hidden", "true");
+    // Close on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAll();
     });
 
-    document.querySelectorAll(".Card.Card--active").forEach(c => {
-      c.classList.remove("Card--active");
-    });
-
-    document.documentElement.style.overflow = "";
-    document.body.style.overflow = "";
-  }
-
-  // Close on ESC
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeAll();
-  });
-
-  // Close if you click outside the images (overlay background)
-  document.addEventListener("click", (e) => {
-    const active = document.querySelector(".Gallery.Gallery--active");
-    if (!active) return;
-
-    const inside = e.target.closest(".Gallery-images") || e.target.closest(".Gallery-header");
-    if (!inside) closeAll();
-  }, true);
-</script>
+    // Close if you click outside the images (overlay background)
+    document.addEventListener('click', (e) => {
+      const active = document.querySelector('.Gallery.Gallery--active');
+      if (!active) return;
+      const insideImages = e.target.closest('.Gallery-images') || e.target.closest('.Gallery-header');
+      if (!insideImages) closeAll();
+    }, true);
+  </script>
 
 </body>
 </html>
