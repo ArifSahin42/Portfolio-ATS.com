@@ -1090,56 +1090,94 @@
     </div>
   </section>
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-    window.addEventListener("load", () => {
-      const loader = document.getElementById("loader");
+  window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
+    setTimeout(() => {
+      loader.style.opacity = "0";
+      document.body.classList.add("loaded");
+      setTimeout(() => loader.remove(), 1000);
+    }, 5000);
+  });
 
-      setTimeout(() => {
-        loader.style.opacity = "0";
-        document.body.classList.add("loaded");
-        setTimeout(() => loader.remove(), 1000);
-      }, 5000);
-    });
+  // Open gallery (works with onclick="openGallery(1)" OR onclick="openGallery(event,1)")
+  function openGallery(eOrId, maybeId) {
+    // Support both signatures:
+    // openGallery(1)
+    // openGallery(event, 1)
+    let id;
+    let evt = null;
 
-    function openGallery(id) {
-      closeAll();
-      const gallery = document.getElementById('gallery-' + id);
-      const card = document.getElementById('card-' + id);
-      if (gallery) {
-        gallery.classList.add('Gallery--active');
-        gallery.setAttribute('aria-hidden', 'false');
-      }
-      if (card) card.classList.add('Card--active');
-      document.documentElement.style.overflow = 'hidden';
-      document.body.style.overflow = 'hidden';
+    if (typeof eOrId === "number") {
+      id = eOrId;
+    } else {
+      evt = eOrId;
+      id = maybeId;
     }
 
-    function closeAll() {
-      const galleryActv = document.querySelector('.Gallery.Gallery--active');
-      const cardActv = document.querySelector('.Card.Card--active');
-      if (galleryActv) {
-        galleryActv.classList.remove('Gallery--active');
-        galleryActv.setAttribute('aria-hidden', 'true');
-      }
-      if (cardActv) cardActv.classList.remove('Card--active');
-      document.documentElement.style.overflow = '';
-      document.body.style.overflow = '';
+    if (evt && typeof evt.preventDefault === "function") evt.preventDefault();
+
+    closeAll();
+
+    const gallery = document.getElementById("gallery-" + id);
+    const card = document.getElementById("card-" + id);
+
+    if (!gallery) {
+      console.warn("Gallery not found:", "gallery-" + id);
+      return;
     }
 
-    // Close on ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeAll();
+    // ✅ OPTIONAL (handig): copy card image → primary gallery image
+    // Als je gallery images al hardcoded zijn (zoals a1..a6), mag je dit weglaten.
+    if (card) {
+      const cardImg = card.querySelector(".Card-image");
+      const primary = gallery.querySelector(".Gallery-image--primary");
+      if (cardImg && primary && cardImg.style.backgroundImage) {
+        // Zet alleen als primary nog leeg is
+        const current = getComputedStyle(primary).backgroundImage;
+        if (!current || current === "none") {
+          primary.style.backgroundImage = cardImg.style.backgroundImage;
+        }
+      }
+    }
+
+    gallery.classList.add("Gallery--active");
+    gallery.setAttribute("aria-hidden", "false");
+    if (card) card.classList.add("Card--active");
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeAll() {
+    document.querySelectorAll(".Gallery.Gallery--active").forEach(g => {
+      g.classList.remove("Gallery--active");
+      g.setAttribute("aria-hidden", "true");
     });
 
-    // Close if you click outside the images (overlay background)
-    document.addEventListener('click', (e) => {
-      const active = document.querySelector('.Gallery.Gallery--active');
-      if (!active) return;
-      const insideImages = e.target.closest('.Gallery-images') || e.target.closest('.Gallery-header');
-      if (!insideImages) closeAll();
-    }, true);
-  </script>
+    document.querySelectorAll(".Card.Card--active").forEach(c => {
+      c.classList.remove("Card--active");
+    });
+
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  }
+
+  // Close on ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAll();
+  });
+
+  // Close if you click outside the images (overlay background)
+  document.addEventListener("click", (e) => {
+    const active = document.querySelector(".Gallery.Gallery--active");
+    if (!active) return;
+
+    const inside = e.target.closest(".Gallery-images") || e.target.closest(".Gallery-header");
+    if (!inside) closeAll();
+  }, true);
+</script>
 
 </body>
 </html>
