@@ -228,11 +228,10 @@
       background: rgba(255,255,255,.65);
       opacity: 0;
       animation: caretIn 1.75s ease-out both, caretBlink 700ms steps(1) infinite;
-      animation-delay: inherit, calc(inherit + 1.75s);
+      animation-delay: inherit, calc(inherit + 5s);
     }
 
     /* No caret on bullets */
-    main li::after{ content: none; }
 
     @keyframes revealText{
       from { clip-path: inset(0 100% 0 0); }
