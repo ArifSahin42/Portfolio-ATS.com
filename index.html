@@ -1,880 +1,422 @@
 <!doctype html>
 <html lang="nl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Arif Sahin Portfolio</title>
-  <meta name="description" content="Portfolio van Arif Sahin (HBO-ICT) — Software Engineer / QA Engineer / Creative Technologist" />
-
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Portfolio of Arif Sahin">
 
   <style>
-    :root {
-      --bg: #050505;
-      --card: #0d0d0d;
-      --text: #ffffff;
-      --muted: #b5b5b5;
-      --line: #1f1f1f;
-      --accent: #ffffff;
-      --max: 980px;
+    /* ========= Base ========= */
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1620;
+      --panel2:#0c121a;
+      --text:#e6edf3;
+      --muted:#9aa7b4;
+      --accent:#35d1a8;
+      --accent2:#5aa7ff;
+      --line:rgba(255,255,255,.08);
+      --shadow: 0 20px 50px rgba(0,0,0,.45);
+      --radius:18px;
+      --radius2:26px;
+      --max: 1120px;
+      --gap: 22px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--text);
       background:
-        radial-gradient(800px 600px at 80% 10%, rgba(255,255,255,0.08), transparent 60%),
-        radial-gradient(600px 400px at 10% 90%, rgba(255,255,255,0.05), transparent 55%),
+        radial-gradient(1200px 600px at 10% 0%, rgba(90,167,255,.12), transparent 55%),
+        radial-gradient(900px 500px at 80% 10%, rgba(53,209,168,.10), transparent 60%),
+        radial-gradient(700px 450px at 50% 90%, rgba(53,209,168,.06), transparent 55%),
         var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      line-height:1.6;
+    }
+    a{ color:inherit; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.15); }
+    a:hover{ border-bottom-color: rgba(255,255,255,.35); }
+
+    /* ========= Layout ========= */
+    header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(11,15,20,.85), rgba(11,15,20,.55));
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      border-bottom:none;
+    }
+    .brand-dot{
+      width:12px;height:12px;border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--accent));
+      box-shadow: 0 0 0 4px rgba(53,209,168,.12);
+    }
+    .brand span{
+      font-weight:700;
+      letter-spacing:.3px;
+    }
+    nav ul{
+      list-style:none;
+      margin:0;padding:0;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    nav a{
+      border-bottom:none;
+      font-size:14px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:12px;
+      transition:.2s ease;
+    }
+    nav a:hover{ color:var(--text); background: rgba(255,255,255,.06); }
+
+    main{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:34px 18px 80px;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
+    section{
+      margin-top:40px;
+      padding:26px 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
     }
-    a:hover { border-bottom-color: var(--accent); }
-
-    header {
-      padding: 60px 20px 30px;
-      border-bottom: 1px solid var(--line);
+    section h2{
+      margin:0 0 12px;
+      font-size:22px;
+      letter-spacing:.2px;
     }
-
-    .wrap { max-width: var(--max); margin: 0 auto; }
-
-    h1 { font-size: 32px; margin: 0; letter-spacing: 1px; }
-    h2 { margin-top: 0; font-size: 22px; letter-spacing: 0.2px; }
-    h3 { font-size: 16px; margin-top: 24px; letter-spacing: 0.2px; }
-
-    .subtitle { color: var(--muted); margin-top: 8px; max-width: 720px; }
-
-    nav {
-      margin-top: 28px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+    section h3{
+      margin:18px 0 10px;
+      font-size:16px;
+      color:var(--text);
+      letter-spacing:.2px;
     }
+    p{ margin:0 0 10px; color:var(--muted); }
+    ul{ margin:10px 0 0 18px; color:var(--muted); }
+    li{ margin:6px 0; }
 
-    section {
-      margin-top: 36px;
-      padding: 32px;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    ul { padding-left: 18px; }
-    li { margin-bottom: 8px; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    @media (max-width: 800px) {
-      .grid { grid-template-columns: 1fr; }
-    }
-
-    .muted { color: var(--muted); }
-
-    /* Buttons — From Uiverse.io by ke1221 (adapted) */
-    button {
-      color: #090909;
-      padding: 0.7em 1.7em;
-      font-size: 16px;
-      border-radius: 0.5em;
-      background: #e8e8e8;
-      cursor: pointer;
-      border: 1px solid #e8e8e8;
-      transition: all 0.3s ease;
-      box-shadow:
-        6px 6px 12px rgba(0,0,0,0.4),
-       -6px -6px 12px rgba(255,255,255,0.6);
-    }
-
-    button:hover { transform: translateY(-1px); }
-
-    button:active {
-      color: #666;
-      box-shadow:
-        inset 4px 4px 12px rgba(0,0,0,0.4),
-        inset -4px -4px 12px rgba(255,255,255,0.6);
-    }
-
-    footer {
-      margin-top: 80px;
-      padding: 30px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      text-align: center;
-    }
-
-    /* ----------------------------
-       FLOW / SMOKE BACKGROUND
-    -----------------------------*/
-    .flow-wrap{
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .flow{
-      position: absolute;
-      width: 120vmax;
-      height: 120vmax;
-      border-radius: 40%;
-      filter: blur(52px);
-      opacity: 0.16;
+    /* ========= Hero ========= */
+    .hero{
+      padding:38px 28px;
+      border-radius:var(--radius2);
       background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.16), transparent 58%),
-        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.10), transparent 62%),
-        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.06), transparent 66%);
-      animation: flowMove 22s ease-in-out infinite;
-      transform: translate3d(0,0,0) rotate(0deg);
-      top: -45vmax;
-      left: -20vmax;
+        radial-gradient(900px 380px at 10% 10%, rgba(90,167,255,.18), transparent 60%),
+        radial-gradient(700px 320px at 80% 25%, rgba(53,209,168,.16), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      box-shadow: 0 25px 70px rgba(0,0,0,.55);
     }
-
-    .flow.two{
-      width: 95vmax;
-      height: 95vmax;
-      top: 15vh;
-      left: -30vmax;
-      opacity: 0.12;
-      filter: blur(58px);
-      animation-duration: 28s;
-      animation-direction: reverse;
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: var(--gap);
+      align-items: start;
     }
-
-    .flow.three{
-      width: 130vmax;
-      height: 130vmax;
-      top: -55vh;
-      left: 35vw;
-      opacity: 0.10;
-      filter: blur(64px);
-      animation-duration: 34s;
+    .hero h1{
+      margin:0;
+      font-size:34px;
+      line-height:1.15;
+      letter-spacing:.2px;
     }
-
-    @keyframes flowMove{
-      0%   { transform: translate(-8vw, -6vh) rotate(0deg) scale(1); }
-      40%  { transform: translate(10vw, 6vh) rotate(16deg) scale(1.05); }
-      75%  { transform: translate(-4vw, 14vh) rotate(32deg) scale(1.02); }
-      100% { transform: translate(-8vw, -6vh) rotate(48deg) scale(1); }
+    .tagline{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:15px;
+      max-width:60ch;
     }
-
-    @media (prefers-reduced-motion: reduce){
-      .flow{ animation: none; }
+    .meta{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
     }
-
-    /* ----------------------------
-       TYPEWRITER / REVEAL
-       Applied to main <p> and <li>
-    -----------------------------*/
-    main p,
-    main li{
-      font-family: "Anonymous Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      position: relative;
-      display: block;
-      overflow: hidden;
-      clip-path: inset(0 100% 0 0);
-      animation: revealText 1.75s ease-out both;
+    .meta-box{
+      padding:16px 16px;
+      border-radius:16px;
+      background: rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.08);
     }
+    .meta-box strong{ display:block; font-size:13px; color:var(--text); }
+    .meta-box span{ font-size:13px; color:var(--muted); }
 
-    main section p:nth-of-type(1){ animation-delay: .12s; }
-    main section p:nth-of-type(2){ animation-delay: .30s; }
-    main section p:nth-of-type(3){ animation-delay: .48s; }
-
-    main li{ animation-delay: .22s; }
-
-    main p::after{
-      content: "";
-      position: absolute;
-      top: 0.12em;
-      bottom: 0.12em;
-      width: 2px;
-      right: 0;
-      background: rgba(255,255,255,.65);
-      opacity: 0;
-      animation: caretIn 1.75s ease-out both;
+    /* ========= Grid Cards ========= */
+    .Grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--gap);
+      margin-top: 20px;
     }
-
-    /* No caret on bullets */
-    main li::after{ content: none; }
-
-    @keyframes revealText{
-      from { clip-path: inset(0 100% 0 0); }
-      to   { clip-path: inset(0 0 0 0); }
-    }
-
-    @keyframes caretIn{
-      0%   { opacity: 1; }
-      90%  { opacity: 1; }
-      100% { opacity: 0; }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      main p,
-      main li{
-        animation: none;
-        clip-path: none;
-      }
-      main p::after{ display:none; }
-    }
-
-    /* ----------------------------
-       ABOUT AVATAR LAYOUT
-    -----------------------------*/
-    .about-grid{
-      display: grid;
-      grid-template-columns: 190px 1fr;
-      gap: 28px;
-      align-items: center;
-    }
-
-    @media (max-width: 700px){
-      .about-grid{
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-    }
-
-    .avatar-link{
-      display: inline-block;
-      border-bottom: none;
-    }
-
-    .avatar-link:hover{ border-bottom: none; }
-
-    .avatar{
-      height: 180px;
-      width: 180px;
-      position: relative;
-      margin: 0 auto;
-    }
-
-    .avatar img{
-      border-radius: 9999px;
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      position: relative;
-      z-index: 2;
-    }
-
-    @keyframes pulse {
-      to { opacity: 0; transform: scale(1); }
-    }
-
-    .avatar::before,
-    .avatar::after{
-      content: "";
-      position: absolute;
-      inset: -18%;
-      border: #fff solid 4px;
-      border-radius: 9999px;
-      opacity: .55;
-      transform: scale(0.75);
-      animation: pulse 2.6s linear infinite;
-      z-index: 1;
-      box-sizing: border-box;
-    }
-
-    .avatar::after{ animation-delay: 1.3s; }
-
-    /* ----------------------------
-       LOCKED RATING (STYLE #1 ONLY)
-    -----------------------------*/
-    .review-rating {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .rating-system1 {
-      display: inline-block;
-      position: relative;
-      width: 140px;
-      height: 22px;
-    }
-
-    .rating-system1 input { display: none; }
-
-    .rating-system1 label {
-      float: right;
-      display: inline-block;
-      width: 20px;
-      height: 6px;
-      background: #777;
-      margin: 4px;
-      transition: none;
-      cursor: default;
-      pointer-events: none;
-      position: relative;
-    }
-
-    .rating-system1 label:before{
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: inherit;
-      top: 0;
-      left: 0;
-      transition: none;
-    }
-
-    .rating-system1 input:checked ~ label { background: seagreen; }
-    .rating-system1 input:checked ~ label:before{ transform: rotate(90deg); }
-
-    .rating-value{
-      color: var(--muted);
-      font-size: 14px;
-      white-space: nowrap;
-    }
-
-    /* ==========================================================
-       LOADING SCREEN (5s) + PAGE FADE-IN
-       - black background
-       - white elements
-       - pauses typewriter until loaded
-    ========================================================== */
-    #loader{
-      position: fixed;
-      inset: 0;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      opacity: 1;
-      transition: opacity 1s ease;
-    }
-
-    #page{
-      opacity: 0;
-      transition: opacity 1.2s ease;
-    }
-
-    body.loaded #page{ opacity: 1; }
-
-    body:not(.loaded) main p,
-    body:not(.loaded) main li{
-      animation: none !important;
-      clip-path: inset(0 100% 0 0) !important;
-    }
-
-    body:not(.loaded) main p::after{
-      animation: none !important;
-      opacity: 0 !important;
-    }
-
-    .ring{
-      position: relative;
-      width: 150px;
-      height: 150px;
-      background: transparent;
-      border: 3px solid #3c3c3c;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 150px;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      font-size: 18px;
-      color: #ffffff;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      text-shadow: 0 0 10px rgba(255,255,255,.55);
-      box-shadow: 0 0 20px rgba(0,0,0,.6);
-      user-select: none;
-    }
-
-    .ring:before{
-      content:'';
-      position:absolute;
-      top:-3px;
-      left:-3px;
-      width:100%;
-      height:100%;
-      border:3px solid transparent;
-      border-top:3px solid #ffffff;
-      border-right:3px solid #ffffff;
-      border-radius:50%;
-      animation:animateC 2s linear infinite;
-      box-sizing: border-box;
-    }
-
-    .ring span{
+    .Card{
+      border-bottom:none;
+      position:relative;
+      border-radius: 22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      box-shadow: 0 20px 45px rgba(0,0,0,.35);
+      transition: transform .25s ease, border-color .25s ease;
       display:block;
-      position:absolute;
-      top:calc(50% - 2px);
-      left:50%;
-      width:50%;
-      height:4px;
-      background:transparent;
-      transform-origin:left;
-      animation:animate 2s linear infinite;
+      min-height: 220px;
     }
-
-    .ring span:before{
-      content:'';
-      position:absolute;
-      width:16px;
-      height:16px;
-      border-radius:50%;
-      background:#ffffff;
-      top:-6px;
-      right:-8px;
-      box-shadow:0 0 20px rgba(255,255,255,.8);
+    .Card:hover{
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,.18);
     }
-
-    @keyframes animateC{
-      0%{ transform:rotate(0deg); }
-      100%{ transform:rotate(360deg); }
-    }
-
-    @keyframes animate{
-      0%{ transform:rotate(45deg); }
-      100%{ transform:rotate(405deg); }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      #loader{ transition: none; }
-      #page{ transition: none; }
-      .ring:before,
-      .ring span{ animation: none; }
-    }
-
-    /* ==========================================================
-       DARK TECH GALLERY (NEW)
-       - Uses your provided Grid/Card/Gallery idea
-       - Adapted to your dark theme
-    ========================================================== */
-
-    /* Ensure Cards don't get underline border */
-    a.Card, a.Card:hover { border-bottom: none; }
-
-    .Grid {
-      width: 100%;
-      margin: 18px auto 0;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    @media (max-width: 950px){
-      .Grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-
-    @media (max-width: 620px){
-      .Grid { grid-template-columns: 1fr; }
-    }
-
-    .Card {
-      position: relative;
-      display: block;
-      padding-bottom: 74px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.02);
-      color: #fff;
-      overflow: hidden;
-      transition: transform .18s ease, background-color .18s ease, border-color .18s ease;
-    }
-
-    .Card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
-
     .Card-thumb{
-      position: relative;
-      width: 100%;
-      height: 170px;
-      perspective-origin: 50% 0%;
-      perspective: 600px;
-      z-index: 1;
+      position:absolute;
+      inset:0;
+      overflow:hidden;
     }
-
-    .Card-image,
     .Card-shadow{
-      position: absolute;
-      inset: 0;
-      transition: all .22s cubic-bezier(0.42, 0.0, 0.58, 1.0);
-      border-radius: 14px;
-      margin: 12px;
+      position:absolute;
+      inset:0;
+      background: radial-gradient(900px 360px at 30% 10%, rgba(90,167,255,.14), transparent 58%),
+                  radial-gradient(800px 420px at 80% 20%, rgba(53,209,168,.16), transparent 62%),
+                  linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.55));
+      pointer-events:none;
     }
-
-    .Card-shadow { opacity: .8; }
-    .Card-shadow:nth-child(1){
-      opacity: .55;
-      background-color: rgba(0, 0, 0, 0.55);
-      transition-delay: .07s;
-    }
-    .Card-shadow:nth-child(2){
-      opacity: .6;
-      background-color: rgba(0, 0, 0, 0.55);
-      transition-delay: .05s;
-    }
-    .Card-shadow:nth-child(3){
-      opacity: .65;
-      background-color: rgba(0, 0, 0, 0.55);
-      transition-delay: .03s;
-    }
-
     .Card-image{
-      position: relative;
+      position:absolute;
+      inset:0;
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      background-color: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.10);
-      overflow: hidden;
+      filter: saturate(1.1) contrast(1.05);
+      transform: scale(1.02);
     }
-
-    .Card-image::before{
-      content:"";
-      position: absolute;
-      inset: 0;
-      background-color: rgba(63,81,181,0.55);
-      opacity: 0;
-      transition: opacity .14s ease;
+    .Card-title{
+      position:absolute;
+      left:16px;
+      bottom:56px;
+      font-weight:700;
+      font-size:16px;
+      letter-spacing:.2px;
+      text-shadow: 0 10px 25px rgba(0,0,0,.5);
     }
-
-    .Card-title,
     .Card-explore{
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 14px;
-      transition: all .22s ease;
+      position:absolute;
+      left:16px;
+      bottom:34px;
+      color: rgba(230,237,243,.85);
+      font-size:13px;
     }
-
-    .Card-title span{
-      font-weight: 700;
-      letter-spacing: .2px;
-    }
-
-    .Card-explore{
-      opacity: 0;
-      transform: translateY(-10px);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: rgba(255,255,255,0.85);
-    }
-
     .Card-button{
-      position: absolute;
-      left: 50%;
-      top: 120px;
-      transform: translate(-50%, 18px);
-      padding: .55rem 1rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.25);
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      opacity: 0;
-      cursor: pointer;
-      transition: all .22s ease;
-      z-index: 4;
-    }
-
-    .Card:hover .Card-title{ opacity: 0; }
-    .Card:hover .Card-explore{ opacity: 1; transform: translateY(8px); }
-    .Card:hover .Card-button{ opacity: 1; transform: translate(-50%, 0); }
-
-    .Card:hover .Card-image{
-      transform: scale(1.05) translateY(-10px) rotateX(18deg);
-    }
-    .Card:hover .Card-image::before{ opacity: .35; }
-
-    .Card:hover .Card-shadow:nth-child(3){
-      transform: scale(1.02) translateY(-3px) rotateX(10deg);
-    }
-    .Card:hover .Card-shadow:nth-child(2){
-      transform: scale(.92) translateY(10px) rotateX(10deg);
-    }
-    .Card:hover .Card-shadow:nth-child(1){
-      transform: scale(.84) translateY(24px) rotateX(4deg);
-    }
-
-    .Card--active,
-    .Card--active:hover{
-      background: transparent;
-      transform: none;
-      border-color: rgba(255,255,255,0.12);
-    }
-
-    .Card--active .Card-explore{
-      opacity: 0;
-      transform: translateY(24px);
-      transition: all .45s ease;
-    }
-
-    .Card--active .Card-image{
-      opacity: 0;
-      transition: all .35s ease;
-      transform: scale(1.05) translateY(-34px) rotateX(40deg);
-    }
-
-    .Card--active .Card-button{
-      opacity: 0;
-      transition: all .35s ease;
-      transform: translate(-50%, -18px) scale(1, 0.4);
-    }
-
-    .Gallery{
-      display: block;
-      position: fixed;
-      inset: 0;
-      padding: 120px 0 60px;
-      background: rgba(0,0,0,0.86);
-      backdrop-filter: blur(10px);
-      opacity: 0;
-      transform: scale(1.06);
-      transition: opacity .35s ease, transform .35s ease;
-      pointer-events: none;
-      overflow-y: auto;
-      z-index: 80;
-    }
-
-    .Gallery-header{
-      position: sticky;
-      top: 0;
-      padding: 18px 22px;
-      background: rgba(0,0,0,0.70);
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      z-index: 2;
-    }
-
-    .Gallery-close{
-      display: inline-block;
-      font-size: 36px;
-      line-height: 36px;
-      opacity: .7;
-      cursor: pointer;
-      border-bottom: none;
-      padding: 0 10px;
-    }
-    .Gallery-close:hover{ opacity: 1; }
-
-    .Gallery-images{
-      display: flex;
-      gap: 14px;
-      width: min(980px, calc(100% - 40px));
-      margin: 0 auto 14px;
-      justify-content: space-between;
-      opacity: 0;
-      transform: translateY(20px) scale(1.02);
-      transition: opacity .25s ease, transform .25s ease;
-    }
-
-    .Gallery--active{
-      opacity: 1;
-      transform: scale(1);
-      pointer-events: auto;
-    }
-
-    .Gallery--active .Gallery-images{
-      opacity: 1;
-      transform: none;
-    }
-
-    .Gallery-left{
-      flex: 1 1 0;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .Gallery-image{
-      display: block;
-      width: 100%;
-      min-height: 120px;
+      position:absolute;
+      right:14px;
+      bottom:14px;
+      border:none;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.06);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      padding:10px 12px;
+      cursor:pointer;
+      background: rgba(255,255,255,.10);
+      color: var(--text);
+      font-weight:600;
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,.14);
+      transition: .2s ease;
+    }
+    .Card:hover .Card-button{
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.18);
     }
 
-    .Gallery-image--primary{
-      flex: 1 1 0;
-      min-height: 260px;
+    /* ========= Modal / Gallery ========= */
+    .overlay{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(10px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:50;
+    }
+    .overlay.open{ display:flex; }
+    .modal{
+      width:min(980px, 100%);
+      max-height: 90vh;
+      overflow:auto;
+      border-radius: 24px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(15,22,32,.95), rgba(12,18,26,.92));
+      box-shadow: 0 30px 90px rgba(0,0,0,.65);
+      position:relative;
+      padding: 18px 18px 24px;
+    }
+    .modal-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding: 6px 6px 10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .modal-title{
+      margin:0;
+      font-size:18px;
+    }
+    .modal-close{
+      border:none;
+      cursor:pointer;
+      border-radius: 14px;
+      padding:10px 12px;
+      background: rgba(255,255,255,.10);
+      color: var(--text);
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .gallery{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .gallery img{
+      width:100%;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.25);
+      display:block;
     }
 
+    /* ========= Buttons ========= */
+    button{
+      border:none;
+      border-radius: 14px;
+      padding:10px 14px;
+      cursor:pointer;
+      background: rgba(255,255,255,.10);
+      color: var(--text);
+      font-weight:600;
+      border:1px solid rgba(255,255,255,.14);
+      transition:.2s ease;
+    }
+    button:hover{
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.18);
+    }
+
+    /* ========= Responsive ========= */
     @media (max-width: 860px){
-      .Gallery-images{
-        flex-direction: column;
-      }
-      .Gallery-left{ flex-direction: row; }
-      .Gallery-image{ min-height: 140px; }
-      .Gallery-image--primary{ min-height: 240px; }
+      .hero-grid{ grid-template-columns: 1fr; }
+      .Grid{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
-
 <body>
-  <!-- LOADING SCREEN -->
-  <div id="loader" aria-label="Loading screen">
-    <div class="ring">Loading
-      <span></span>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#">
+      <div class="brand-dot"></div>
+      <span>Arif Sahin</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#darktech">Dark Tech</a></li>
+        <li><a href="#internship">Objective Platform</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="hero">
+    <div class="hero-grid">
+      <div>
+        <h1>Portfolio — QA / Engineering</h1>
+        <p class="tagline">
+          Ik ben Arif Sahin. In dit portfolio vind je een overzicht van mijn opleiding,
+          ervaring en projecten in QA / Engineering.
+        </p>
+      </div>
+      <div class="meta">
+        <div class="meta-box">
+          <strong>Focus</strong>
+          <span>QA, Testen, Analyse, Samenwerking</span>
+        </div>
+        <div class="meta-box">
+          <strong>Locatie</strong>
+          <span>Nederland</span>
+        </div>
+        <div class="meta-box">
+          <strong>Contact</strong>
+          <span>Zie onderaan de pagina</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- PAGE WRAPPER (fade-in after 5s) -->
-  <div id="page">
+  <section id="about">
+    <h2>About</h2>
+    <p>
+      Ik ben een gedreven student met interesse in Quality Assurance en software engineering.
+      Ik werk graag gestructureerd, communiceer helder en vind het leuk om problemen uit te pluizen.
+    </p>
+  </section>
 
-    <!-- Flow background -->
-    <div class="flow-wrap" aria-hidden="true">
-      <div class="flow"></div>
-      <div class="flow two"></div>
-      <div class="flow three"></div>
+  <section id="education">
+    <h2>Education</h2>
+    <ul>
+      <li>Software Development (opleiding / traject)</li>
+      <li>Relevante vakken: testing, requirements, tools</li>
+    </ul>
+  </section>
+
+  <section id="darktech">
+    <h2>Dark Tech</h2>
+    <p>Projecten en learnings rondom Dark Tech.</p>
+
+    <section class="Grid" aria-label="Dark Tech gallery grid">
+      <!-- Card 1 -->
+      <a class="Card" href="javascript:void(0)" onclick="openGallery(1)" id="card-1" aria-label="Open gallery item 1">
+        <div class="Card-thumb">
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-shadow"></div>
+          <div class="Card-image" style="background-image:url('a1.png')"></div>
+        </div>
+        <div class="Card-title"><span> Dark Tech</span></div>
+        <div class="Card-explore"><span>Open detail view</span></div>
+        <button class="Card-button" type="button">View more</button>
+      </a>
+    </section>
+
+    <div style="margin-top: 18px;">
+      <a href="#" style="border-bottom:none;">
+        <button type="button">Documents</button>
+      </a>
     </div>
+  </section>
 
-    <header>
-      <div class="wrap">
-        <h1>ARIF SAHIN</h1>
-        <p class="subtitle">
-          (HBO-ICT) — Software Engineer / QA Engineer / Creative Technologist
-          <br />
-          <span class="muted">Ik bouw en test interactieve applicaties met focus op gebruikerservaring, gedrag en kwaliteit.</span>
-        </p>
-
-        <nav>
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#darktech">Dark Tech</a>
-          <a href="#internship">Objective Platform</a>
-          <a href="#reviews">Reviews</a>
-          <a href="#tags">Categories</a>
-          <a href="#relevance">Relevance</a>
-          <a href="#cv">CV</a>
-        </nav>
-      </div>
-    </header>
-
-    <main class="wrap">
-
-      <section id="about">
-        <div class="about-grid">
-          <a class="avatar-link" href="https://www.linkedin.com/in/arif-sahin-91b785232/" target="_blank" rel="noopener" aria-label="Open LinkedIn profile">
-            <div class="avatar">
-              <img src="IMG_3928.png" alt="Arif Sahin">
-            </div>
-          </a>
-          <div>
-            <p>
-              Ik ben Arif Sahin, 3e-jaars HBO-ICT student aan de Hogeschool van Amsterdam (HvA).
-              In projecten neem ik vaak de rol op me van tester/quality-minded engineer: ik zorg dat een idee niet alleen werkt,
-              maar ook duidelijk en prettig is voor gebruikers.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="skills">
-        <h2>Skills</h2>
-        <div class="grid">
-          <div>
-            <h3>Technical & Research Skills</h3>
-            <ul>
-              <li>User research & usability testing</li>
-              <li>QA testing (functioneel, gebruikservaring, iteratief verbeteren)</li>
-              <li>Interaction & experience design</li>
-              <li>Prototyping (low–mid fidelity)</li>
-              <li>Kwalitatieve data-analyse (observaties, feedback, patronen)</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Professional Skills</h3>
-            <ul>
-              <li>Analytisch denken</li>
-              <li>Kritisch reflecteren</li>
-              <li>Zelfstandig werken</li>
-              <li>Feedback verwerken en vertalen naar actie</li>
-              <li>Communicatie met team en stakeholders</li>
-              <li>Java/Typescript</li>
-              <li>HTML/CSS</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects">
-        <h2>Projects</h2>
-        <p class="muted">Een selectie van projecten die het beste laten zien wat ik kan en hoe ik werk.</p>
-        <ul>
-          <li><a href="#darktech">Dark Tech Studio</a> - interactieve ervaring, testen, gedrag & ethiek</li>
-          <li><a href="#internship">Internship (Objective Platform)</a> - software engineering, professionaliteit, research</li>
-        </ul>
-      </section>
-
-      <section id="darktech">
-        <h2>Dark Tech Studio</h2>
-        <p>
-          Binnen Dark Tech werkte ik aan een interactieve game ervaring die bewustwording creëert rondom
-          sociale isolatie, afleiding en keuzes in de openbare ruimte.
-        </p>
-
-        <h3>My Role & Contributions</h3>
-        <ul>
-          <li>Testopzet en uitvoering (observaties, enquêtes, scenario’s)</li>
-          <li>Verbeterpunten formuleren en terugkoppelen</li>
-          <li>Meedenken over interactiemomenten (knoppen), scenes en audio-ervaring</li>
-        </ul>
-
-        <h3>What I Learned From This Project</h3>
-        <ul>
-          <li>Hoe je een prototype testbaar maakt zonder gebruikers te sturen</li>
-          <li>Hoe je feedback omzet in concrete verbeteringen</li>
-          <li>Hoe interactie, timing en audio samen de ervaring dragen</li>
-        </ul>
-
-        <section class="Grid" aria-label="Dark Tech gallery grid">
-          <!-- Card 1 -->
-          <a class="Card" href="javascript:void(0)" onclick="openGallery(1)" id="card-1" aria-label="Open gallery item 1">
-            <div class="Card-thumb">
-              <div class="Card-shadow"></div>
-              <div class="Card-shadow"></div>
-              <div class="Card-shadow"></div>
-              <!-- UPDATED: now uses a1.png -->
-              <div class="Card-image" style="background-image:url('a7.png')"></div>
-            </div>
-            <div class="Card-title"><span> Project Dark Tech</span></div>
-            <div class="Card-explore"><span>Open detail view</span></div>
-            <button class="Card-button" type="button">View more</button>
-          </a>
-        </section>
-
-        <!-- ✅ NEW: Researches button (same style as other buttons) -->
-        <div style="margin-top: 18px;">
-          <a href="#" style="border-bottom:none;">
-            <button type="button">Researches</button>
-          </a>
-        </div>
-
-      </section>
-
-      <section id="internship">
+  <section id="internship">
         <h2>Objective Platform</h2>
         <p>
           Tijdens mijn stage werkte ik als QA Engineering Intern. Ik werd beoordeeld als zelfstandig,
@@ -888,9 +430,9 @@
           <li>Opstellen van testplannen</li>
           <li>QA testen in verschillende environments</li>
         </ul>
-      </section>
 
-       <section class="Grid" aria-label="Dark Tech gallery grid">
+        
+        <section class="Grid" aria-label="Objective Platform gallery grid">
           <!-- Card 2 -->
           <a class="Card" href="javascript:void(0)" onclick="openGallery(2)" id="card-2" aria-label="Open gallery item 2">
             <div class="Card-thumb">
@@ -905,13 +447,14 @@
             <button class="Card-button" type="button">View more</button>
           </a>
         </section>
+
         
-        <!-- ✅ NEW: Researches button (same style as other buttons) -->
         <div style="margin-top: 18px;">
           <a href="#" style="border-bottom:none;">
             <button type="button">Documents</button>
           </a>
         </div>
+      </section>
 
       <section id="reviews">
         <h2>Reviews</h2>
@@ -921,199 +464,79 @@
 
             <br><br>
             Beoordeling:
-            Arif doet zijn werk zelfstandig en professioneel. Tijdens de stage nam hij steeds meer eigenaarschap over zijn taken,
-            had hij minder begeleiding nodig en ging hij flexibel om met veranderingen en feedback. Zijn bijdragen zijn als praktisch
-            en waardevol ervaren binnen het team.
-
-            <br><br>
-            Sterkste punten:
-            Zelfstandigheid, professionele houding, analytisch werken, omgaan met feedback, rustige houding onder druk.
-
-            <br><br>
-
-            <div class="review-rating" aria-label="Rating Valeria Demie: 5 out of 5">
-              <div class="rating-system1" aria-hidden="true">
-                <input type="radio" name="valeria_rate" id="valeria_star5" checked />
-                <label for="valeria_star5"></label>
-                <input type="radio" name="valeria_rate" id="valeria_star4" />
-                <label for="valeria_star4"></label>
-                <input type="radio" name="valeria_rate" id="valeria_star3" />
-                <label for="valeria_star3"></label>
-                <input type="radio" name="valeria_rate" id="valeria_star2" />
-                <label for="valeria_star2"></label>
-                <input type="radio" name="valeria_rate" id="valeria_star1" />
-                <label for="valeria_star1"></label>
-              </div>
-              <span class="rating-value">5/5</span>
-            </div>
+            Arif doet zijn werk met een hoge mate van professionaliteit. Zijn zelfstandigheid,
+            eigenaarschap en vermogen om issues analytisch te benaderen vielen positief op.
           </li>
-
-          <br><br>
-
           <li>
-            <strong>Rob Kiebert</strong> - Assessor and IT teacher (HvA)
+            <strong>Hugo Koster</strong> - QA Engineer
 
             <br><br>
             Beoordeling:
-            Arif werkt duidelijk gestructureerd, methodisch onderbouwend en professioneel. Hij is goed met het oplossen van probleemstellingen,
-            onderzoeksvragen en conclusies en sluit ze logisch op elkaar aan.
-
-            <br><br>
-            Sterkste punten:
-            Structuur, helder schrijven, juiste bronverwijzing, analytische onderbouwing.
-
-            <div class="review-rating" aria-label="Rating Rob Kiebert: 4 out of 5">
-              <div class="rating-system1" aria-hidden="true">
-                <input type="radio" name="rob_rate" id="rob_star5" />
-                <label for="rob_star5"></label>
-                <input type="radio" name="rob_rate" id="rob_star4" checked />
-                <label for="rob_star4"></label>
-                <input type="radio" name="rob_rate" id="rob_star3" />
-                <label for="rob_star3"></label>
-                <input type="radio" name="rob_rate" id="rob_star2" />
-                <label for="rob_star2"></label>
-                <input type="radio" name="rob_rate" id="rob_star1" />
-                <label for="rob_star1"></label>
-              </div>
-              <span class="rating-value">4/5</span>
-            </div>
+            Arif is communicatief sterk en werkt nauwkeurig. Hij leert snel en pakt feedback goed op.
           </li>
         </ul>
       </section>
 
-      <section id="tags">
-        <h2>Categories</h2>
-        <ul>
-          <li>#Creative Technologist</li>
-          <li>#User Research</li>
-          <li>#Usability Testing</li>
-          <li>#QA</li>
-          <li>#Interaction Design</li>
-          <li>#Ethical Design</li>
-          <li>#Prototyping</li>
-          <li>#Java/Typescript</li>
-        </ul>
-      </section>
-
-      <section id="relevance">
-        <h2>Why These Skills & Experiences Matter</h2>
-        <p>
-          Ik kies projecten waarin ik niet alleen kan bouwen, maar vooral kan laten zien hoe ik kwaliteit lever:
-          door te testen, te verbeteren en de ervaring scherp te maken voor gebruikers. Dit helpt mij om sterker te worden
-          als Software Engineer en als Creative Technologist in verschillende werkomgevingen.
-        </p>
-      </section>
-
-      <section id="cv">
-        <h2>CV & Links</h2>
-        <a href="https://www.linkedin.com/in/arif-sahin-91b785232/" target="_blank" rel="noopener" style="border-bottom:none;">
-          <button type="button">LinkedIn</button>
-        </a>
-        <a href="Arif Sahin.pdf" download="Arif_Sahin_CV.pdf" style="border-bottom:none;">
-          <button type="button">Download CV</button>
-        </a>
-      </section>
-
-    </main>
-
-    <footer>
-      © <span id="year"></span> Arif Sahin
-    </footer>
-
-  </div><!-- /#page -->
-
-  <!-- UPDATED: Gallery uses a1.png .. a6.png -->
-  <section class="Gallery" id="gallery-1" aria-hidden="true">
-    <div class="Gallery-header">
-      <a class="Gallery-close" onclick="closeAll()" aria-label="Close gallery">×</a>
-    </div>
-
-    <div class="Gallery-images">
-      <div class="Gallery-left">
-        <div class="Gallery-image" style="background-image:url('a1.png')"></div>
-        <div class="Gallery-image" style="background-image:url('a2.png')"></div>
-      </div>
-      <div class="Gallery-image Gallery-image--primary" style="background-image:url('a3.png')"></div>
-    </div>
-
-    <div class="Gallery-images">
-      <div class="Gallery-image" style="background-image:url('a4.png')"></div>
-      <div class="Gallery-image" style="background-image:url('a5.png')"></div>
-      <div class="Gallery-image" style="background-image:url('a6.png')"></div>
-    </div>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      Stuur me gerust een bericht via e-mail of LinkedIn.
+    </p>
+    <ul>
+      <li>Email: <a href="mailto:arif@example.com">arif@example.com</a></li>
+      <li>LinkedIn: <a href="#">(link hier)</a></li>
+    </ul>
   </section>
 
-  <!-- UPDATED: Gallery uses a9.png .. a14.png -->
-  <section class="Gallery" id="gallery-2" aria-hidden="true">
-    <div class="Gallery-header">
-      <a class="Gallery-close" onclick="closeAll()" aria-label="Close gallery">×</a>
+</main>
+
+<!-- ===== Overlay / Modal ===== -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Gallery modal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 class="modal-title" id="modalTitle">Gallery</h3>
+      <button class="modal-close" type="button" onclick="closeGallery()">Close</button>
     </div>
+    <div class="gallery" id="galleryContent"></div>
+  </div>
+</div>
 
-    <div class="Gallery-images">
-      <div class="Gallery-left">
-        <div class="Gallery-image" style="background-image:url('a9.png')"></div>
-        <div class="Gallery-image" style="background-image:url('a10.png')"></div>
-      </div>
-      <div class="Gallery-image Gallery-image--primary" style="background-image:url('a11.png')"></div>
-    </div>
+<script>
+  const overlay = document.getElementById('overlay');
+  const modalTitle = document.getElementById('modalTitle');
+  const galleryContent = document.getElementById('galleryContent');
 
-    <div class="Gallery-images">
-      <div class="Gallery-image" style="background-image:url('a12.png')"></div>
-      <div class="Gallery-image" style="background-image:url('a13.png')"></div>
-      <div class="Gallery-image" style="background-image:url('a14.png')"></div>
-    </div>
-  </section>
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    window.addEventListener("load", () => {
-      const loader = document.getElementById("loader");
-
-      setTimeout(() => {
-        loader.style.opacity = "0";
-        document.body.classList.add("loaded");
-        setTimeout(() => loader.remove(), 1000);
-      }, 5000);
-    });
-
-    function openGallery(id) {
-      closeAll();
-      const gallery = document.getElementById('gallery-' + id);
-      const card = document.getElementById('card-' + id);
-      if (gallery) {
-        gallery.classList.add('Gallery--active');
-        gallery.setAttribute('aria-hidden', 'false');
-      }
-      if (card) card.classList.add('Card--active');
-      document.documentElement.style.overflow = 'hidden';
-      document.body.style.overflow = 'hidden';
+  const galleries = {
+    1: {
+      title: "Dark Tech",
+      images: ["a1.png", "a2.png", "a3.png", "a4.png"]
+    },
+    2: {
+      title: "Objective Platform",
+      images: ["a8.png", "a9.png", "a10.png", "a11.png"]
     }
+  };
 
-    function closeAll() {
-      const galleryActv = document.querySelector('.Gallery.Gallery--active');
-      const cardActv = document.querySelector('.Card.Card--active');
-      if (galleryActv) {
-        galleryActv.classList.remove('Gallery--active');
-        galleryActv.setAttribute('aria-hidden', 'true');
-      }
-      if (cardActv) cardActv.classList.remove('Card--active');
-      document.documentElement.style.overflow = '';
-      document.body.style.overflow = '';
-    }
+  function openGallery(id){
+    const g = galleries[id];
+    if(!g) return;
+    modalTitle.textContent = g.title;
+    galleryContent.innerHTML = g.images.map(src => `<img src="${src}" alt="">`).join("");
+    overlay.classList.add('open');
+  }
 
-    // Close on ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeAll();
-    });
+  function closeGallery(){
+    overlay.classList.remove('open');
+  }
 
-    // Close if you click outside the images (overlay background)
-    document.addEventListener('click', (e) => {
-      const active = document.querySelector('.Gallery.Gallery--active');
-      if (!active) return;
-      const insideImages = e.target.closest('.Gallery-images') || e.target.closest('.Gallery-header');
-      if (!insideImages) closeAll();
-    }, true);
-  </script>
+  overlay.addEventListener('click', (e) => {
+    if(e.target === overlay) closeGallery();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === "Escape") closeGallery();
+  });
+</script>
 
 </body>
 </html>
