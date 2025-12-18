@@ -849,36 +849,46 @@
           <li>Hoe interactie, timing en audio samen de ervaring dragen</li>
         </ul>
 
-        <section class="Grid" aria-label="Dark Tech gallery grid">
-          <!-- Card 1 -->
-          <a class="Card" href="javascript:void(0)" onclick="openGallery(1)" id="card-1" aria-label="Open gallery item 1">
-            <div class="Card-thumb">
-              <div class="Card-shadow"></div>
-              <div class="Card-shadow"></div>
-              <div class="Card-shadow"></div>
-             <div class="Card-image"
-           style="background-image:url('/a7.png')"></div>
-    </div>>
-            <div class="Card-title"><span> Project Dark Tech</span></div>
-            <div class="Card-explore"><span>Open detail view</span></div>
-            <button class="Card-button" type="button">View more</button>
+       <section class="Grid" aria-label="Dark Tech gallery grid">
+  <!-- Card 1 -->
+  <a class="Card"
+     href="#"
+     onclick="openGallery(event, 1)"
+     id="card-1"
+     aria-label="Open gallery item 1">
 
-            <div class="Gallery-images">
+    <div class="Card-thumb">
+      <div class="Card-shadow"></div>
+      <div class="Card-shadow"></div>
+      <div class="Card-shadow"></div>
 
+      <div class="Card-image" style="background-image:url('/a7.png')"></div>
+    </div>
+
+    <div class="Card-title"><span>Project Dark Tech</span></div>
+    <div class="Card-explore"><span>Open detail view</span></div>
+    <button class="Card-button" type="button">View more</button>
+  </a>
+</section>
+
+<!-- ✅ GALLERY MOET APART STAAN, NIET BINNEN DE <a> -->
+<section class="Gallery" id="gallery-1" aria-hidden="true">
+  <div class="Gallery-header">
+    <button class="Gallery-close" type="button" onclick="closeAll()">×</button>
+  </div>
+
+  <div class="Gallery-images">
     <div class="Gallery-left">
       <div class="Gallery-image"></div>
       <div class="Gallery-image"></div>
     </div>
 
-    <!-- 🔥 PRIMARY IMAGE (DIT WAS HET PROBLEEM) -->
+    <!-- ✅ DIT IS DE “START / PRIMARY” IMAGE -->
     <div class="Gallery-image Gallery-image--primary"
-         style="background-image:url('/a7.png')">
-    </div>
-
+         style="background-image:url('/a7.png')"></div>
   </div>
+</section>
 
-          </a>
-        </section>
 
         <!-- ✅ NEW: Researches button (same style as other buttons) -->
         <div style="margin-top: 18px;">
