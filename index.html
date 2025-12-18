@@ -504,16 +504,30 @@
     }
 
     .Card-image,
-    .Card-shadow:nth-child(1),
-.Card-shadow:nth-child(2),
-.Card-shadow:nth-child(3){
-  background-image: url('a7.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: transparent;
-}
+    .Card-shadow{
+      position: absolute;
+      inset: 0;
+      transition: all .22s cubic-bezier(0.42, 0.0, 0.58, 1.0);
+      border-radius: 14px;
+      margin: 12px;
+    }
 
+    .Card-shadow { opacity: .8; }
+    .Card-shadow:nth-child(1){
+      opacity: .55;
+      background-color: rgba(0, 0, 0, 0.55);
+      transition-delay: .07s;
+    }
+    .Card-shadow:nth-child(2){
+      opacity: .6;
+      background-color: rgba(0, 0, 0, 0.55);
+      transition-delay: .05s;
+    }
+    .Card-shadow:nth-child(3){
+      opacity: .65;
+      background-color: rgba(0, 0, 0, 0.55);
+      transition-delay: .03s;
+    }
 
     .Card-image{
       position: relative;
