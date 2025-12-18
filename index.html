@@ -773,6 +773,33 @@
       height: 100%;
       display: block;
     }
+
+      /* =========================
+       BLOB EFFECT (NIEUW)
+    ========================== */
+    #blob-effect {
+      margin: 60px 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      position: relative;
+      overflow: hidden;
+      height: 420px;
+    }
+
+    #blob-effect svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .blob {
+      fill: white;
+    }
+
+    .blobs {
+      filter: url(#goo);
+    }
   </style>
 </head>
 
@@ -867,6 +894,35 @@
           </div>
         </div>
       </section>
+
+      <!-- =========================
+     BLOB EFFECT TUSSEN SKILLS & PROJECTS
+========================== -->
+<section id="blob-effect" aria-hidden="true">
+  <svg viewBox="0 0 800 800">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur"/>
+        <feColorMatrix in="blur" mode="matrix"
+          values="
+            1 0 0 0 0
+            0 1 0 0 0
+            0 0 1 0 0
+            0 0 0 18 -7"
+          result="goo"/>
+        <feBlend in="SourceGraphic" in2="goo"/>
+      </filter>
+    </defs>
+
+    <g class="blobs">
+      <circle class="blob" cx="400" cy="400" r="40"/>
+      <circle class="blob" cx="450" cy="420" r="70"/>
+      <circle class="blob" cx="360" cy="460" r="50"/>
+      <circle class="blob" cx="420" cy="500" r="80"/>
+      <circle class="blob" cx="480" cy="470" r="35"/>
+    </g>
+  </svg>
+</section>
 
       <section id="projects">
         <h2>Projects</h2>
@@ -1361,6 +1417,37 @@
       }, { once:true });
 
     })();
+
+    /* Blob animation */
+  var radius = 10;
+  TweenMax.staggerFromTo(
+    ".blob",
+    4,
+    {
+      cycle: {
+        attr: function (i) {
+          var r = i * 90;
+          return {
+            transform:
+              "rotate(" + r + ") translate(" + radius + ",0) rotate(" + -r + ")",
+          };
+        },
+      },
+    },
+    {
+      cycle: {
+        attr: function (i) {
+          var r = i * 90 + 360;
+          return {
+            transform:
+              "rotate(" + r + ") translate(" + radius + ",0) rotate(" + -r + ")",
+          };
+        },
+      },
+      ease: Linear.easeNone,
+      repeat: -1,
+    }
+  );
   </script>
 
 </body>
