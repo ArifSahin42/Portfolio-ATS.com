@@ -741,16 +741,16 @@
   box-sizing: border-box;
 }
 
-/* Gebruik NIET 'section' (dat heb je al in je site). */
 .bowl-section{
-  display: flex;
+  display: inline-flex;     /* geen full section */
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: #121212;
+  min-height: auto;         /* weg met 100vh */
+  background: transparent;  /* weg met zwart */
   transform: scale(0.5);
   transform-origin: center;
 }
+
 
 .bowl{
   position: relative;
@@ -1134,7 +1134,6 @@
         </a>
         <a href="Arif Sahin.pdf" download="Arif_Sahin_CV.pdf" style="border-bottom:none;">
           <button type="button">Download CV</button>
-        </a>
       </section>
       <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
