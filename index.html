@@ -728,26 +728,6 @@
       .Gallery-image{ min-height: 140px; }
       .Gallery-image--primary{ min-height: 240px; }
     }
-
-    /* WebGL section wrapper */
-#webgl-section {
-  position: relative;
-  width: 100%;
-  height: 420px;
-  overflow: hidden;
-  pointer-events: none; /* effect is decoratief */
-}
-
-/* Canvas only lives here */
-#webgl-section #gl {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  background: transparent;
-}
-
   </style>
 </head>
 
@@ -887,7 +867,7 @@
 
         <!-- ✅ NEW: Researches button (same style as other buttons) -->
         <div style="margin-top: 18px;">
-             <a href="https://github.com/ArifSahin42/DarkTechResearches/" target="_blank" rel="noopener" style="border-bottom:none;">
+             <a href="https://github.com/ArifSahin42/DarkTechResearches" target="_blank" rel="noopener" style="border-bottom:none;">
           <button type="button">Researches</button>
           </a>
         </div>
@@ -1035,11 +1015,6 @@
         </a>
       </section>
 
-      <section id="webgl-section" aria-label="Decorative WebGL effect">
-  <canvas id="gl"></canvas>
-</section>
-
-
     </main>
 
     <footer>
@@ -1139,9 +1114,6 @@
       const insideImages = e.target.closest('.Gallery-images') || e.target.closest('.Gallery-header');
       if (!insideImages) closeAll();
     }, true);
-
-    canvasElement = document.getElementById("gl");
-
   </script>
 
 </body>
