@@ -1309,6 +1309,10 @@
         const W = w(), H = h();
         ctx.save();
 
+        ctx.fillStyle = "#000";
+        ctx.globalAlpha = 0.08;
+        ctx.fillRect(0, 0, W, H);
+
         ctx.translate(W / 2, H / 2);
         ctx.globalAlpha = 0.55;
         ctx.strokeStyle = "rgba(255,255,255,0.35)";
