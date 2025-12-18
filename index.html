@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Arif Sahin Portfolio</title>
-  <meta name="description" content="Portfolio van Arif Sahin (HBO-ICT) — Software Engineer/QA-Engineer/Creative Technologist" />
+  <meta name="description" content="Portfolio van Arif Sahin (HBO-ICT) — Software Engineer / QA Engineer / Creative Technologist" />
 
   <style>
     :root {
@@ -17,9 +17,7 @@
       --max: 980px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -37,10 +35,7 @@
       text-decoration: none;
       border-bottom: 1px solid rgba(255,255,255,0.2);
     }
-
-    a:hover {
-      border-bottom-color: var(--accent);
-    }
+    a:hover { border-bottom-color: var(--accent); }
 
     header {
       padding: 60px 20px 30px;
@@ -61,17 +56,19 @@
     h2 {
       margin-top: 0;
       font-size: 22px;
+      letter-spacing: 0.2px;
     }
 
     h3 {
       font-size: 16px;
       margin-top: 24px;
+      letter-spacing: 0.2px;
     }
 
     .subtitle {
       color: var(--muted);
       margin-top: 8px;
-      max-width: 640px;
+      max-width: 720px;
     }
 
     nav {
@@ -89,25 +86,19 @@
       background: rgba(255, 255, 255, 0.02);
     }
 
-    ul {
-      padding-left: 18px;
-    }
-
-    li {
-      margin-bottom: 8px;
-    }
+    ul { padding-left: 18px; }
+    li { margin-bottom: 8px; }
 
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
-
     @media (max-width: 800px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
+      .grid { grid-template-columns: 1fr; }
     }
+
+    .muted { color: var(--muted); }
 
     /* Buttons — From Uiverse.io by ke1221 (adapted) */
     button {
@@ -123,11 +114,7 @@
         6px 6px 12px rgba(0,0,0,0.4),
        -6px -6px 12px rgba(255,255,255,0.6);
     }
-
-    button:hover {
-      transform: translateY(-1px);
-    }
-
+    button:hover { transform: translateY(-1px); }
     button:active {
       color: #666;
       box-shadow:
@@ -151,15 +138,21 @@
   <div class="wrap">
     <h1>ARIF SAHIN</h1>
     <p class="subtitle">
-      Creative Technologist (HBO-ICT) -  Software Engineer/QA-Engineer/Creative Technologist
+      (HBO-ICT) — Software Engineer / QA Engineer / Creative Technologist
+      <br />
+      <span class="muted">Ik bouw en test interactieve applicaties met focus op gebruikerservaring, gedrag en kwaliteit.</span>
     </p>
 
     <nav>
-      <a href="#intro">Introductie</a>
-      <a href="#skills">Skills</a>
-      <a href="#darktech">Dark Tech</a>
-      <a href="#internship">Internship</a>
-      <a href="#tasks">Beroepstaken</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills & Tools</a>
+      <a href="#projects">Selected Projects</a>
+      <a href="#darktech">Project Highlight: Dark Tech</a>
+      <a href="#internship">Internship Results</a>
+      <a href="#reviews">Product Owner & Supervisor Reviews</a>
+      <a href="#evidence">Visual Evidence</a>
+      <a href="#tags">Tags</a>
+      <a href="#relevance">Why This Matters</a>
       <a href="#cv">CV</a>
     </nav>
   </div>
@@ -167,85 +160,152 @@
 
 <main class="wrap">
 
-  <section id="intro">
-    <h2>Introductie</h2>
+  <section id="about">
+    <h2>Who I Am & What I Bring</h2>
     <p>
-      Ik ben Arif Sahin, een 3e jaars Software Engineer die momenteel studeerd op de Universiteit van Amsterdam.
+      Ik ben Arif Sahin, 3e-jaars HBO-ICT student aan de Hogeschool van Amsterdam (HvA).
+      In projecten neem ik vaak de rol op me van tester/quality-minded engineer: ik zorg dat een idee niet alleen werkt,
+      maar ook duidelijk en prettig is voor gebruikers.
+    </p>
+    <p class="muted">
+      Deze pagina is gebouwd als portfolio: projecten, rollen, bewijs en wat ik daaruit heb gehaald.
+      Kwaliteit boven kwantiteit.
     </p>
   </section>
 
   <section id="skills">
-    <h2>Skills</h2>
+    <h2>Skills & Tools I Use</h2>
     <div class="grid">
       <div>
-        <h3>Hard skills</h3>
+        <h3>Technical & Research Skills</h3>
         <ul>
           <li>User research & usability testing</li>
-          <li>QA Testing</li>
+          <li>QA testing (functioneel, gebruikservaring, iteratief verbeteren)</li>
           <li>Interaction & experience design</li>
-          <li>Prototyping</li>
-          <li>Kwalitatieve data-analyse</li>
+          <li>Prototyping (low–mid fidelity)</li>
+          <li>Kwalitatieve data-analyse (observaties, feedback, patronen)</li>
         </ul>
       </div>
       <div>
-        <h3>Soft skills</h3>
+        <h3>Professional Skills</h3>
         <ul>
           <li>Analytisch denken</li>
           <li>Kritisch reflecteren</li>
           <li>Zelfstandig werken</li>
-          <li>Feedback verwerken</li>
-          <li>Professionele communicatie</li>
+          <li>Feedback verwerken en vertalen naar actie</li>
+          <li>Communicatie met team en stakeholders</li>
+          <li>Java/Typescript</li>
+          <li>HTML/CSS</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section id="darktech">
-    <h2>Project — Dark Tech Studio</h2>
-    <p>
-      Binnen Dark Tech werkte ik aan een interactieve game die bewustwording creëert rondom sociale isolatie,
-      afleiding en ethische keuzes in de openbare ruimte.
-    </p>
-
-    <h3>Analyseren</h3>
-    <p>
-      Door observaties, enquêtes en fysieke tests analyseerde ik waar gebruikers twijfelden,
-      wat zij belangrijk vonden en of zij begrepen wat er van hen werd verwacht.
-    </p>
-
-    <h3>Ontwerpen</h3>
-    <p>
-      Ik ontwierp game scenes met morele keuzes, ondersteund door audio en fysieke knoppen,
-      waarbij ongemak en falen bewust onderdeel waren van de ervaring.
-    </p>
-
-    <h3>Realiseren</h3>
-    <p>
-      Ik zette mijn ontwerpen om in testbare ervaringen tijdens het FLOOR event en gebruikte
-      de resultaten om het prototype gericht te verbeteren.
-    </p>
-  </section>
-
-  <section id="internship">
-    <h2>Internship — Objective Platform</h2>
-    <p>
-      Tijdens mijn stage werkte ik als Software Engineering Intern en werd ik beoordeeld
-      als zelfstandig, professioneel en sterk in analyse en reflectie.
-    </p>
-  </section>
-
-  <section id="tasks">
-    <h2>HBO-ICT Beroepstaken</h2>
+  <section id="projects">
+    <h2>Selected Projects</h2>
+    <p class="muted">Een selectie van projecten die het beste laten zien wat ik kan en hoe ik werk.</p>
     <ul>
-      <li>Gebruikersinteractie — analyseren, ontwerpen, testen</li>
-      <li>Software — testen, kwaliteit bewaken</li>
-      <li>Organisatieprocessen — analyseren en adviseren</li>
-      <li>Hardware interfacing — fysieke interactie</li>
+      <li><a href="#darktech">Dark Tech Studio</a> — interactieve ervaring, testen, gedrag & ethiek</li>
+      <li><a href="#internship">Internship (Objective Platform)</a> — software engineering, professionaliteit, research</li>
     </ul>
   </section>
 
+  <section id="darktech">
+    <h2>Project Highlight: Dark Tech Studio</h2>
+    <p>
+      Binnen Dark Tech werkte ik aan een interactieve game ervaring die bewustwording creëert rondom
+      sociale isolatie, afleiding en keuzes in de openbare ruimte.
+    </p>
+
+    <h3>My Role & Contributions</h3>
+    <ul>
+      <li>Testopzet en uitvoering (observaties, enquêtes, scenario’s)</li>
+      <li>Verbeterpunten formuleren en terugkoppelen</li>
+      <li>Meedenken over interactiemomenten (knoppen), scenes en audio-ervaring</li>
+    </ul>
+
+    <h3>What I Learned From This Project</h3>
+    <ul>
+      <li>Hoe je een prototype testbaar maakt zonder gebruikers te sturen</li>
+      <li>Hoe je feedback omzet in concrete verbeteringen</li>
+      <li>Hoe interactie, timing en audio samen de ervaring dragen</li>
+    </ul>
+  </section>
+
+  <section id="internship">
+    <h2>Internship Results: Objective Platform</h2>
+    <p>
+      Tijdens mijn stage werkte ik als Software Engineering Intern. Ik werd beoordeeld als zelfstandig,
+      professioneel en sterk in analyse en reflectie.
+    </p>
+
+    <h3>What This Experience Added</h3>
+    <ul>
+      <li>Professionele werkwijze en ownership</li>
+      <li>Communicatie en samenwerking in een productomgeving</li>
+      <li>Research/reporting op niveau voor een echte opdrachtgever</li>
+    </ul>
+  </section>
+
+  <section id="reviews">
+    <h2>Product Owner & Supervisor Reviews</h2>
+    <p class="muted">
+      Hier plaats ik beoordelingen en korte highlights uit feedback van product owners/supervisors als bewijs van mijn manier van werken.
+    </p>
+    <ul>
+      <li>Stagebeoordeling (bedrijfsbegeleider): zelfstandigheid, professionaliteit, communicatie</li>
+      <li>Research report assessment: structuur, methode, conclusies</li>
+      <li>Project feedback (Dark Tech): kwaliteit van tests, helderheid van terugkoppeling</li>
+    </ul>
+  </section>
+
+  <section id="evidence">
+    <h2>Visual Evidence & Proof</h2>
+    <p class="muted">
+      Bewijs (visuals, screenshots, resultaten) om mijn rollen en skills direct aantoonbaar te maken.
+      Voeg hier je afbeeldingen en documenten toe als links of thumbnails.
+    </p>
+
+    <h3>Dark Tech Evidence</h3>
+    <ul>
+      <li>Testresultaten (grafieken: schermafstand, knoprespons, logica keuzes)</li>
+      <li>Testdocumenten (schermopstelling, knoppen, keuzemomenten)</li>
+      <li>Scene & audio-plannen (breakdowns, interaction/audio planning)</li>
+    </ul>
+
+    <h3>Internship Evidence</h3>
+    <ul>
+      <li>Final assessment workplace placement (screenshots)</li>
+      <li>Assessment research report internship (screenshots)</li>
+    </ul>
+  </section>
+
+  <section id="tags">
+    <h2>Tags & Categories</h2>
+    <p class="muted">Gebruik tags om je profiel snel scanbaar te maken voor docenten en recruiters.</p>
+    <ul>
+      <li>Creative Technologist</li>
+      <li>User Research</li>
+      <li>Usability Testing</li>
+      <li>QA / Quality Mindset</li>
+      <li>Interaction Design</li>
+      <li>Ethical Design</li>
+      <li>Prototyping</li>
+    </ul>
+  </section>
+
+  <section id="relevance">
+    <h2>Why These Skills & Experiences Matter</h2>
+    <p>
+      Ik kies projecten waarin ik niet alleen kan bouwen, maar vooral kan laten zien hoe ik kwaliteit lever:
+      door te testen, te verbeteren en de ervaring scherp te maken voor gebruikers. Dit helpt mij om sterker te worden
+      als Creative Technologist en als engineer in professionele teams.
+    </p>
+  </section>
+
   <section id="cv">
-    <h2>CV</h2>
+    <h2>CV & Links</h2>
+      <button onclick="window.location.href='LinkedIn.pdf'">Connect LinkedIn</button>
     <button onclick="window.location.href='CV.pdf'">Download CV</button>
   </section>
 
