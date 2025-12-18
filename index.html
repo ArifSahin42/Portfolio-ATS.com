@@ -741,6 +741,17 @@
   box-sizing: border-box;
 }
 
+/* Gebruik NIET 'section' (dat heb je al in je site). */
+.bowl-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #121212;
+  transform: scale(0.5);
+  transform-origin: center;
+}
+
 .bowl{
   position: relative;
   width: 300px;
@@ -750,8 +761,6 @@
   border: 8px solid transparent;   /* FIX: solide -> solid */
   animation: animateBowl 5s linear infinite;
   transform-origin: bottom center;
-  transform: scale(0.5);
-  transform-origin: center;
 }
 
 @keyframes animateBowl{
@@ -831,17 +840,6 @@
   filter: drop-shadow(0 0 80px #15be05);
 }
 
-.shadow{
-  position: absolute;
-  top: calc(50% + 150px);
-  width: 250px;
-  height: 40px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  animation: animateShadow 5s linear infinite;
-}
 
 @keyframes animateShadow{
   0%   { left: 50%; width: 260px; height: 40px; top: calc(50% + 150px); }
@@ -1147,8 +1145,6 @@
     <section class="bowl-section">
   <div class="bowl">
     <div class="liquid"></div>
-  </div>
-  <div class="shadow"></div>
 </section>
 
     </main>
