@@ -728,32 +728,6 @@
       .Gallery-image{ min-height: 140px; }
       .Gallery-image--primary{ min-height: 240px; }
     }
-
-    /* ============================
-       CANVAS BACKGROUND ANIMATION
-       (placed above header)
-    ============================ */
-    #stage{
-      position: absolute;
-      top: -200px;
-      left: 50%;
-      transform: translateX(-50%) scale(0.5);
-      transform-origin: top center;
-      width: 200%;
-      height: auto;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Ensure content stays above canvas */
-    header, main, footer{
-      position: relative;
-      z-index: 2;
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      #stage{ display:none; }
-    }
   </style>
 </head>
 
@@ -767,9 +741,6 @@
 
   <!-- PAGE WRAPPER (fade-in after 5s) -->
   <div id="page">
-
-    <!-- CANVAS ANIMATION (behind header) -->
-    <canvas id="stage" width="1200" height="1200" aria-hidden="true"></canvas>
 
     <!-- Flow background -->
     <div class="flow-wrap" aria-hidden="true">
@@ -854,7 +825,7 @@
         <p class="muted">Een selectie van projecten die het beste laten zien wat ik kan en hoe ik werk.</p>
         <ul>
           <li><a href="#darktech">Dark Tech Studio</a> - interactieve ervaring, testen, gedrag & ethiek</li>
-          <li><a href="#internship">Internship (Objective Platform)</a>- software engineering, professionaliteit, research</li>
+          <li><a href="#internship">Internship (Objective Platform)</a> - software engineering, professionaliteit, research</li>
         </ul>
       </section>
 
@@ -886,14 +857,16 @@
               <div class="Card-shadow"></div>
               <div class="Card-shadow"></div>
               <div class="Card-shadow"></div>
+              <!-- UPDATED: now uses a1.png -->
               <div class="Card-image" style="background-image:url('images/a1.png')"></div>
             </div>
-            <div class="Card-title"><span> Project Dark Tech —</span></div>
+            <div class="Card-title"><span> Project Dark Tech</span></div>
             <div class="Card-explore"><span>Open detail view</span></div>
             <button class="Card-button" type="button">View more</button>
           </a>
         </section>
 
+        <!-- ✅ NEW: Researches button (same style as other buttons) -->
         <div style="margin-top: 18px;">
           <a href="#" style="border-bottom:none;">
             <button type="button">Researches</button>
@@ -914,7 +887,7 @@
           <li>Professionele werkwijze en ownership</li>
           <li>Communicatie en samenwerking in een productomgeving</li>
           <li>Opstellen van testplannen</li>
-          <li>QA testen in verschillende enviorments</li>
+          <li>QA testen in verschillende environments</li>
         </ul>
       </section>
 
@@ -926,7 +899,9 @@
 
             <br><br>
             Beoordeling:
-            Arif doet zijn werk zelfstandig en professioneel. Tijdens de stage nam hij steeds meer eigenaarschap over zijn taken, had hij minder begeleiding nodig en ging hij flexibel om met veranderingen en feedback. Zijn bijdragen zijn als praktisch en waardevol ervaren binnen het team.
+            Arif doet zijn werk zelfstandig en professioneel. Tijdens de stage nam hij steeds meer eigenaarschap over zijn taken,
+            had hij minder begeleiding nodig en ging hij flexibel om met veranderingen en feedback. Zijn bijdragen zijn als praktisch
+            en waardevol ervaren binnen het team.
 
             <br><br>
             Sterkste punten:
@@ -954,11 +929,12 @@
           <br><br>
 
           <li>
-            <strong>Rob Kiebert</strong> - Assessor and IT teacher (HVA)
+            <strong>Rob Kiebert</strong> - Assessor and IT teacher (HvA)
 
             <br><br>
             Beoordeling:
-            Arif werkt duidelijk gestructureerd, methodisch onderbouwend en professioneel. Hij is goed met het oplossen van probleemstellingen, onderzoeksvragen en conclusies sluit ze logisch op elkaar aan.
+            Arif werkt duidelijk gestructureerd, methodisch onderbouwend en professioneel. Hij is goed met het oplossen van probleemstellingen,
+            onderzoeksvragen en conclusies en sluit ze logisch op elkaar aan.
 
             <br><br>
             Sterkste punten:
@@ -1005,7 +981,7 @@
       </section>
 
       <section id="tags">
-        <h2>Catagories</h2>
+        <h2>Categories</h2>
         <ul>
           <li>#Creative Technologist</li>
           <li>#User Research</li>
@@ -1023,17 +999,17 @@
         <p>
           Ik kies projecten waarin ik niet alleen kan bouwen, maar vooral kan laten zien hoe ik kwaliteit lever:
           door te testen, te verbeteren en de ervaring scherp te maken voor gebruikers. Dit helpt mij om sterker te worden
-          als Software Engineer en als Creative Technologist in verschillende werk omgevingen.
+          als Software Engineer en als Creative Technologist in verschillende werkomgevingen.
         </p>
       </section>
 
       <section id="cv">
         <h2>CV & Links</h2>
-        <a href="LinkedIn.pdf" style="border-bottom:none;">
+        <a href="https://www.linkedin.com/in/arif-sahin-91b785232/" target="_blank" rel="noopener" style="border-bottom:none;">
           <button type="button">LinkedIn</button>
         </a>
         <a href="Arif Sahin.pdf" download="Arif_Sahin_CV.pdf" style="border-bottom:none;">
-          <button type="button">CV</button>
+          <button type="button">Download CV</button>
         </a>
       </section>
 
@@ -1045,6 +1021,7 @@
 
   </div><!-- /#page -->
 
+  <!-- UPDATED: Gallery uses a1.png .. a6.png -->
   <section class="Gallery" id="gallery-1" aria-hidden="true">
     <div class="Gallery-header">
       <a class="Gallery-close" onclick="closeAll()" aria-label="Close gallery">×</a>
@@ -1115,58 +1092,6 @@
       const insideImages = e.target.closest('.Gallery-images') || e.target.closest('.Gallery-header');
       if (!insideImages) closeAll();
     }, true);
-
-    // ============================
-    // Canvas animation (subtle flow)
-    // ============================
-    (function initCanvas(){
-      const canvas = document.getElementById("stage");
-      if (!canvas) return;
-
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return;
-
-      let width = 1200;
-      let height = 1200;
-
-      const resize = () => {
-        // keep the same logical size; scale for DPR for sharpness
-        const dpr = window.devicePixelRatio || 1;
-        canvas.width = Math.round(width * dpr);
-        canvas.height = Math.round(height * dpr);
-        canvas.style.width = width + "px";
-        canvas.style.height = height + "px";
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      };
-
-      resize();
-      window.addEventListener("resize", resize, { passive: true });
-
-      let t = 0;
-      const points = 140;
-
-      const draw = () => {
-        // clear
-        ctx.clearRect(0, 0, width, height);
-
-        // subtle particles
-        for (let i = 0; i < points; i++) {
-          const x = 600 + Math.sin(t / 50 + i * 0.35) * (260 + (i % 7) * 8);
-          const y = 600 + Math.cos(t / 43 + i * 0.28) * (260 + (i % 9) * 7);
-
-          ctx.beginPath();
-          ctx.arc(x, y, 2.2, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(255,255,255,0.055)";
-          ctx.fill();
-        }
-
-        t += 1;
-        requestAnimationFrame(draw);
-      };
-
-      // Wait until load so it doesn't fight the loader
-      window.addEventListener("load", () => requestAnimationFrame(draw), { once: true });
-    })();
   </script>
 
 </body>
