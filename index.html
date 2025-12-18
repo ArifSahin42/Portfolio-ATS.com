@@ -196,37 +196,43 @@
     }
 
     /* ----------------------------
-       TYPEWRITER (MULTI-LINE SAFE)
-       Applied to all main <p>
+       TYPEWRITER / REVEAL (MULTI-LINE SAFE)
+       Applied to main <p> and <li>
     -----------------------------*/
-    main p{
+    main p,
+    main li{
       font-family: "Anonymous Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       position: relative;
       display: block;
       overflow: hidden;
-      /* reveal effect */
       clip-path: inset(0 100% 0 0);
-      animation: revealText 1.15s ease-out both;
+      animation: revealText 1.75s ease-out both; /* ~50% slower */
     }
 
     /* Stagger paragraphs a little (cleaner feel) */
-    main section p:nth-of-type(1){ animation-delay: .08s; }
-    main section p:nth-of-type(2){ animation-delay: .20s; }
-    main section p:nth-of-type(3){ animation-delay: .32s; }
+    main section p:nth-of-type(1){ animation-delay: .12s; }
+    main section p:nth-of-type(2){ animation-delay: .30s; }
+    main section p:nth-of-type(3){ animation-delay: .48s; }
 
-    /* subtle caret during reveal */
+    /* Stagger list items slightly so they don't pop all at once */
+    main li{ animation-delay: .22s; }
+
+    /* Subtle caret during reveal (only on paragraphs) */
     main p::after{
       content: "";
       position: absolute;
-      top: 0.1em;
-      bottom: 0.1em;
+      top: 0.12em;
+      bottom: 0.12em;
       width: 2px;
       right: 0;
       background: rgba(255,255,255,.65);
       opacity: 0;
-      animation: caretIn 1.15s ease-out both, caretBlink 650ms steps(1) infinite;
-      animation-delay: inherit, calc(inherit + 1.15s);
+      animation: caretIn 1.75s ease-out both, caretBlink 700ms steps(1) infinite;
+      animation-delay: inherit, calc(inherit + 1.75s);
     }
+
+    /* No caret on bullets */
+    main li::after{ content: none; }
 
     @keyframes revealText{
       from { clip-path: inset(0 100% 0 0); }
@@ -235,7 +241,7 @@
 
     @keyframes caretIn{
       0%   { opacity: 1; }
-      85%  { opacity: 1; }
+      90%  { opacity: 1; }
       100% { opacity: 0; }
     }
 
@@ -245,7 +251,8 @@
     }
 
     @media (prefers-reduced-motion: reduce){
-      main p{
+      main p,
+      main li{
         animation: none;
         clip-path: none;
       }
@@ -450,4 +457,18 @@
     <section id="cv">
       <h2>CV & Links</h2>
       <button onclick="window.location.href='LinkedIn.pdf'">LinkedIn</button>
-      <button onclick="window.location.href='CV.pdf'">CV
+      <button onclick="window.location.href='CV.pdf'">CV</button>
+    </section>
+
+  </main>
+
+  <footer>
+    © <span id="year"></span> Arif Sahin
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
