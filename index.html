@@ -349,11 +349,7 @@
 
     /* ==========================================================
        LOADING SCREEN (5s) + PAGE FADE-IN
-       - black background
-       - white elements
-       - pauses typewriter until loaded
     ========================================================== */
-
     #loader{
       position: fixed;
       inset: 0;
@@ -366,28 +362,24 @@
       transition: opacity 1s ease;
     }
 
-    /* Keep your original page hidden until loader ends */
     #page{
       opacity: 0;
       transition: opacity 1.2s ease;
     }
 
-    body.loaded #page{
-      opacity: 1;
-    }
+    body.loaded #page{ opacity: 1; }
 
-    /* Pause reveal/typewriter until loaded (so it doesn't "finish" behind the loader) */
     body:not(.loaded) main p,
     body:not(.loaded) main li{
       animation: none !important;
       clip-path: inset(0 100% 0 0) !important;
     }
+
     body:not(.loaded) main p::after{
       animation: none !important;
       opacity: 0 !important;
     }
 
-    /* Loader ring (white on black) */
     .ring{
       position: relative;
       width: 150px;
@@ -461,6 +453,49 @@
       #page{ transition: none; }
       .ring:before,
       .ring span{ animation: none; }
+    }
+
+    /* ==========================================================
+       SCROLL BAR / SCROLL CONTAINER (NEW)
+    ========================================================== */
+    .scroll--root {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .scroll--viewport {
+      max-height: 280px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding-right: 8px;
+    }
+
+    .scroll--content {
+      display: grid;
+      gap: 18px;
+      padding: 18px;
+    }
+
+    .scroll--viewport::-webkit-scrollbar { width: 8px; }
+    .scroll--viewport::-webkit-scrollbar-track {
+      background: transparent;
+      margin-block: 14px;
+    }
+    .scroll--viewport::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.22);
+      border-radius: 999px;
+    }
+    .scroll--viewport:hover::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.40);
+    }
+
+    @supports (scrollbar-color: auto) {
+      .scroll--viewport {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255,255,255,0.4) transparent;
+      }
     }
   </style>
 </head>
@@ -687,6 +722,13 @@
           <li>Final assessment workplace placement (screenshots)</li>
           <li>Assessment research report internship (screenshots)</li>
         </ul>
+
+        <!-- NEW: Scroll container -->
+        <section class="scroll--root" aria-label="Scrollable evidence notes">
+          <div class="scroll--viewport" tabindex="0">
+            <div class="scroll--content">
+        </section>
+
       </section>
 
       <section id="tags">
