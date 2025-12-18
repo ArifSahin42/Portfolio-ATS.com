@@ -273,10 +273,7 @@
     }
 
     @keyframes pulse {
-      to {
-        opacity: 0;
-        transform: scale(1);
-      }
+      to { opacity: 0; transform: scale(1); }
     }
 
     .avatar::before,
@@ -349,6 +346,9 @@
 
     /* ==========================================================
        LOADING SCREEN (5s) + PAGE FADE-IN
+       - black background
+       - white elements
+       - pauses typewriter until loaded
     ========================================================== */
     #loader{
       position: fixed;
@@ -456,46 +456,277 @@
     }
 
     /* ==========================================================
-       SCROLL BAR / SCROLL CONTAINER (NEW)
+       DARK TECH GALLERY (NEW)
+       - Uses your provided Grid/Card/Gallery idea
+       - Adapted to your dark theme
     ========================================================== */
-    .scroll--root {
-      margin-top: 18px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255,255,255,0.02);
-    }
 
-    .scroll--viewport {
-      max-height: 280px;
-      overflow-y: auto;
-      overscroll-behavior: contain;
-      padding-right: 8px;
-    }
+    /* Ensure Cards don't get underline border */
+    a.Card, a.Card:hover { border-bottom: none; }
 
-    .scroll--content {
+    .Grid {
+      width: 100%;
+      margin: 18px auto 0;
       display: grid;
-      gap: 18px;
-      padding: 18px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
     }
 
-    .scroll--viewport::-webkit-scrollbar { width: 8px; }
-    .scroll--viewport::-webkit-scrollbar-track {
-      background: transparent;
-      margin-block: 14px;
+    @media (max-width: 950px){
+      .Grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
-    .scroll--viewport::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.22);
+
+    @media (max-width: 620px){
+      .Grid { grid-template-columns: 1fr; }
+    }
+
+    .Card {
+      position: relative;
+      display: block;
+      padding-bottom: 74px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.02);
+      color: #fff;
+      overflow: hidden;
+      transition: transform .18s ease, background-color .18s ease, border-color .18s ease;
+    }
+
+    .Card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
+
+    .Card-thumb{
+      position: relative;
+      width: 100%;
+      height: 170px;
+      perspective-origin: 50% 0%;
+      perspective: 600px;
+      z-index: 1;
+    }
+
+    .Card-image,
+    .Card-shadow{
+      position: absolute;
+      inset: 0;
+      transition: all .22s cubic-bezier(0.42, 0.0, 0.58, 1.0);
+      border-radius: 14px;
+      margin: 12px;
+    }
+
+    .Card-shadow { opacity: .8; }
+    .Card-shadow:nth-child(1){
+      opacity: .55;
+      background-color: rgba(103,58,183,0.55);
+      transition-delay: .07s;
+    }
+    .Card-shadow:nth-child(2){
+      opacity: .6;
+      background-color: rgba(63,81,181,0.55);
+      transition-delay: .05s;
+    }
+    .Card-shadow:nth-child(3){
+      opacity: .65;
+      background-color: rgba(33,150,243,0.55);
+      transition-delay: .03s;
+    }
+
+    .Card-image{
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      overflow: hidden;
+    }
+
+    .Card-image::before{
+      content:"";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(63,81,181,0.55);
+      opacity: 0;
+      transition: opacity .14s ease;
+    }
+
+    .Card-title,
+    .Card-explore{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 14px;
+      transition: all .22s ease;
+    }
+
+    .Card-title span{
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .Card-explore{
+      opacity: 0;
+      transform: translateY(-10px);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .Card-button{
+      position: absolute;
+      left: 50%;
+      top: 120px;
+      transform: translate(-50%, 18px);
+      padding: .55rem 1rem;
       border-radius: 999px;
-    }
-    .scroll--viewport:hover::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.40);
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0;
+      cursor: pointer;
+      transition: all .22s ease;
+      z-index: 4;
     }
 
-    @supports (scrollbar-color: auto) {
-      .scroll--viewport {
-        scrollbar-width: thin;
-        scrollbar-color: rgba(255,255,255,0.4) transparent;
+    .Card:hover .Card-title{ opacity: 0; }
+    .Card:hover .Card-explore{ opacity: 1; transform: translateY(8px); }
+    .Card:hover .Card-button{ opacity: 1; transform: translate(-50%, 0); }
+
+    .Card:hover .Card-image{
+      transform: scale(1.05) translateY(-10px) rotateX(18deg);
+    }
+    .Card:hover .Card-image::before{ opacity: .35; }
+
+    .Card:hover .Card-shadow:nth-child(3){
+      transform: scale(1.02) translateY(-3px) rotateX(10deg);
+    }
+    .Card:hover .Card-shadow:nth-child(2){
+      transform: scale(.92) translateY(10px) rotateX(10deg);
+    }
+    .Card:hover .Card-shadow:nth-child(1){
+      transform: scale(.84) translateY(24px) rotateX(4deg);
+    }
+
+    .Card--active,
+    .Card--active:hover{
+      background: transparent;
+      transform: none;
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .Card--active .Card-explore{
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all .45s ease;
+    }
+
+    .Card--active .Card-image{
+      opacity: 0;
+      transition: all .35s ease;
+      transform: scale(1.05) translateY(-34px) rotateX(40deg);
+    }
+
+    .Card--active .Card-button{
+      opacity: 0;
+      transition: all .35s ease;
+      transform: translate(-50%, -18px) scale(1, 0.4);
+    }
+
+    .Gallery{
+      display: block;
+      position: fixed;
+      inset: 0;
+      padding: 120px 0 60px;
+      background: rgba(0,0,0,0.86);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transform: scale(1.06);
+      transition: opacity .35s ease, transform .35s ease;
+      pointer-events: none;
+      overflow-y: auto;
+      z-index: 80;
+    }
+
+    .Gallery-header{
+      position: sticky;
+      top: 0;
+      padding: 18px 22px;
+      background: rgba(0,0,0,0.70);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      z-index: 2;
+    }
+
+    .Gallery-close{
+      display: inline-block;
+      font-size: 36px;
+      line-height: 36px;
+      opacity: .7;
+      cursor: pointer;
+      border-bottom: none;
+      padding: 0 10px;
+    }
+    .Gallery-close:hover{ opacity: 1; }
+
+    .Gallery-images{
+      display: flex;
+      gap: 14px;
+      width: min(980px, calc(100% - 40px));
+      margin: 0 auto 14px;
+      justify-content: space-between;
+      opacity: 0;
+      transform: translateY(20px) scale(1.02);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+
+    .Gallery--active{
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .Gallery--active .Gallery-images{
+      opacity: 1;
+      transform: none;
+    }
+
+    .Gallery-left{
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .Gallery-image{
+      display: block;
+      width: 100%;
+      min-height: 120px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .Gallery-image--primary{
+      flex: 1 1 0;
+      min-height: 260px;
+    }
+
+    @media (max-width: 860px){
+      .Gallery-images{
+        flex-direction: column;
       }
+      .Gallery-left{ flex-direction: row; }
+      .Gallery-image{ min-height: 140px; }
+      .Gallery-image--primary{ min-height: 240px; }
     }
   </style>
 </head>
@@ -622,6 +853,25 @@
           <li>Hoe je feedback omzet in concrete verbeteringen</li>
           <li>Hoe interactie, timing en audio samen de ervaring dragen</li>
         </ul>
+
+        <!-- NEW: Gallery Grid (images are placeholders; replace URLs later) -->
+        <h3>Gallery</h3>
+
+        <section class="Grid" aria-label="Dark Tech gallery grid">
+          <!-- Card 1 -->
+          <a class="Card" href="javascript:void(0)" onclick="openGallery(1)" id="card-1" aria-label="Open gallery item 1">
+            <div class="Card-thumb">
+              <div class="Card-shadow"></div>
+              <div class="Card-shadow"></div>
+              <div class="Card-shadow"></div>
+              <div class="Card-image" style="background-image:url('images/darktech-1.jpg')"></div>
+            </div>
+            <div class="Card-title"><span>Dark Tech — Visual 1</span></div>
+            <div class="Card-explore"><span>Open detail view</span></div>
+            <button class="Card-button" type="button">View more</button>
+          </a>
+        </section>
+
       </section>
 
       <section id="internship">
@@ -722,13 +972,6 @@
           <li>Final assessment workplace placement (screenshots)</li>
           <li>Assessment research report internship (screenshots)</li>
         </ul>
-
-        <!-- NEW: Scroll container -->
-        <section class="scroll--root" aria-label="Scrollable evidence notes">
-          <div class="scroll--viewport" tabindex="0">
-            <div class="scroll--content">
-        </section>
-
       </section>
 
       <section id="tags">
@@ -757,12 +1000,10 @@
       <section id="cv">
         <h2>CV & Links</h2>
 
-        <!-- LinkedIn: direct profile -->
         <a href="https://www.linkedin.com/in/arif-sahin-91b785232/" target="_blank" rel="noopener" style="border-bottom:none;">
           <button type="button">LinkedIn</button>
         </a>
 
-        <!-- CV: download -->
         <a href="Arif Sahin.pdf" download="Arif_Sahin_CV.pdf" style="border-bottom:none;">
           <button type="button">Download CV</button>
         </a>
@@ -776,6 +1017,25 @@
 
   </div><!-- /#page -->
 
+  <!-- NEW: Galleries (9 overlays) -->
+  <section class="Gallery" id="gallery-1" aria-hidden="true">
+    <div class="Gallery-header">
+      <a class="Gallery-close" onclick="closeAll()" aria-label="Close gallery">×</a>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-left">
+        <div class="Gallery-image" style="background-image:url('images/darktech-1a.jpg')"></div>
+        <div class="Gallery-image" style="background-image:url('images/darktech-1b.jpg')"></div>
+      </div>
+      <div class="Gallery-image Gallery-image--primary" style="background-image:url('images/darktech-1.jpg')"></div>
+    </div>
+    <div class="Gallery-images">
+      <div class="Gallery-image" style="background-image:url('images/darktech-1c.jpg')"></div>
+      <div class="Gallery-image" style="background-image:url('images/darktech-1d.jpg')"></div>
+      <div class="Gallery-image" style="background-image:url('images/darktech-1e.jpg')"></div>
+    </div>
+  </section>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -783,18 +1043,49 @@
       const loader = document.getElementById("loader");
 
       setTimeout(() => {
-        // Fade out loader
         loader.style.opacity = "0";
-
-        // Fade in page + start reveal animations
         document.body.classList.add("loaded");
-
-        // Remove loader after fade
-        setTimeout(() => {
-          loader.remove();
-        }, 1000);
+        setTimeout(() => loader.remove(), 1000);
       }, 5000);
     });
+
+    function openGallery(id) {
+      closeAll();
+      const gallery = document.getElementById('gallery-' + id);
+      const card = document.getElementById('card-' + id);
+      if (gallery) {
+        gallery.classList.add('Gallery--active');
+        gallery.setAttribute('aria-hidden', 'false');
+      }
+      if (card) card.classList.add('Card--active');
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAll() {
+      const galleryActv = document.querySelector('.Gallery.Gallery--active');
+      const cardActv = document.querySelector('.Card.Card--active');
+      if (galleryActv) {
+        galleryActv.classList.remove('Gallery--active');
+        galleryActv.setAttribute('aria-hidden', 'true');
+      }
+      if (cardActv) cardActv.classList.remove('Card--active');
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+
+    // Close on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAll();
+    });
+
+    // Close if you click outside the images (overlay background)
+    document.addEventListener('click', (e) => {
+      const active = document.querySelector('.Gallery.Gallery--active');
+      if (!active) return;
+      const insideImages = e.target.closest('.Gallery-images') || e.target.closest('.Gallery-header');
+      if (!insideImages) closeAll();
+    }, true);
   </script>
 
 </body>
