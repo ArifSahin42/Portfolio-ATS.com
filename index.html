@@ -456,9 +456,7 @@
     }
 
     /* ==========================================================
-       DARK TECH GALLERY (NEW)
-       - Uses your provided Grid/Card/Gallery idea
-       - Adapted to your dark theme
+       DARK TECH GALLERY
     ========================================================== */
 
     /* Ensure Cards don't get underline border */
@@ -728,6 +726,53 @@
       .Gallery-image{ min-height: 140px; }
       .Gallery-image--primary{ min-height: 240px; }
     }
+
+    /* ============================
+       TOP CANVAS BACKGROUND (above header)
+    ============================ */
+    #stage{
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.5);
+      transform-origin: top center;
+      width: 200%;
+      height: auto;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Ensure content stays above canvas */
+    header, main, footer{
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      #stage{ display:none; }
+    }
+
+    /* ============================
+       BOTTOM EFFECT (NEW)
+    ============================ */
+    #bottom-effect{
+      margin-top: 48px;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: #000;
+      overflow: hidden;
+      height: 420px;
+      position: relative;
+    }
+
+    #bottomCanvas{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
   </style>
 </head>
 
@@ -741,6 +786,9 @@
 
   <!-- PAGE WRAPPER (fade-in after 5s) -->
   <div id="page">
+
+    <!-- TOP CANVAS ANIMATION (behind header) -->
+    <canvas id="stage" width="1200" height="1200" aria-hidden="true"></canvas>
 
     <!-- Flow background -->
     <div class="flow-wrap" aria-hidden="true">
@@ -765,7 +813,8 @@
           <a href="#darktech">Dark Tech</a>
           <a href="#internship">Objective Platform</a>
           <a href="#reviews">Reviews</a>
-          <a href="#tags">Categories</a>
+          <a href="#evidence">Visual Evidence</a>
+          <a href="#tags">Catagories</a>
           <a href="#relevance">Relevance</a>
           <a href="#cv">CV</a>
         </nav>
@@ -824,7 +873,7 @@
         <p class="muted">Een selectie van projecten die het beste laten zien wat ik kan en hoe ik werk.</p>
         <ul>
           <li><a href="#darktech">Dark Tech Studio</a> - interactieve ervaring, testen, gedrag & ethiek</li>
-          <li><a href="#internship">Internship (Objective Platform)</a> - software engineering, professionaliteit, research</li>
+          <li><a href="#internship">Internship (Objective Platform)</a>- software engineering, professionaliteit, research</li>
         </ul>
       </section>
 
@@ -856,16 +905,14 @@
               <div class="Card-shadow"></div>
               <div class="Card-shadow"></div>
               <div class="Card-shadow"></div>
-              <!-- UPDATED: now uses a1.png -->
-              <div class="Card-image" style="background-image:url('a7.png')"></div>
+              <div class="Card-image" style="background-image:url('images/a1.png')"></div>
             </div>
-            <div class="Card-title"><span> Project Dark Tech</span></div>
+            <div class="Card-title"><span> Project Dark Tech —</span></div>
             <div class="Card-explore"><span>Open detail view</span></div>
             <button class="Card-button" type="button">View more</button>
           </a>
         </section>
 
-        <!-- ✅ NEW: Researches button (same style as other buttons) -->
         <div style="margin-top: 18px;">
           <a href="#" style="border-bottom:none;">
             <button type="button">Researches</button>
@@ -886,33 +933,9 @@
           <li>Professionele werkwijze en ownership</li>
           <li>Communicatie en samenwerking in een productomgeving</li>
           <li>Opstellen van testplannen</li>
-          <li>QA testen in verschillende environments</li>
+          <li>QA testen in verschillende enviorments</li>
         </ul>
-
-  <!-- ✅ Gallery 2 BINNEN internship -->
-  <section class="Grid" aria-label="Objective Platform gallery grid">
-    <a class="Card" href="javascript:void(0)" onclick="openGallery(2)" id="card-2">
-      <div class="Card-thumb">
-        <div class="Card-shadow"></div>
-        <div class="Card-shadow"></div>
-        <div class="Card-shadow"></div>
-        <div class="Card-image" style="background-image:url('a8.png')"></div>
-      </div>
-      <div class="Card-title"><span>Objective Platform</span></div>
-      <div class="Card-explore"><span>Open detail view</span></div>
-      <button class="Card-button" type="button">View more</button>
-    </a>
-  </section>
-
-  <!-- ✅ Documents BINNEN internship -->
-  <div style="margin-top: 18px;">
-    <a href="#" style="border-bottom:none;">
-      <button type="button">Documents</button>
-    </a>
-  </div>
-
-</section>
-
+      </section>
 
       <section id="reviews">
         <h2>Reviews</h2>
@@ -922,9 +945,7 @@
 
             <br><br>
             Beoordeling:
-            Arif doet zijn werk zelfstandig en professioneel. Tijdens de stage nam hij steeds meer eigenaarschap over zijn taken,
-            had hij minder begeleiding nodig en ging hij flexibel om met veranderingen en feedback. Zijn bijdragen zijn als praktisch
-            en waardevol ervaren binnen het team.
+            Arif doet zijn werk zelfstandig en professioneel. Tijdens de stage nam hij steeds meer eigenaarschap over zijn taken, had hij minder begeleiding nodig en ging hij flexibel om met veranderingen en feedback. Zijn bijdragen zijn als praktisch en waardevol ervaren binnen het team.
 
             <br><br>
             Sterkste punten:
@@ -952,12 +973,11 @@
           <br><br>
 
           <li>
-            <strong>Rob Kiebert</strong> - Assessor and IT teacher (HvA)
+            <strong>Rob Kiebert</strong> - Assessor and IT teacher (HVA)
 
             <br><br>
             Beoordeling:
-            Arif werkt duidelijk gestructureerd, methodisch onderbouwend en professioneel. Hij is goed met het oplossen van probleemstellingen,
-            onderzoeksvragen en conclusies en sluit ze logisch op elkaar aan.
+            Arif werkt duidelijk gestructureerd, methodisch onderbouwend en professioneel. Hij is goed met het oplossen van probleemstellingen, onderzoeksvragen en conclusies sluit ze logisch op elkaar aan.
 
             <br><br>
             Sterkste punten:
@@ -982,8 +1002,29 @@
         </ul>
       </section>
 
+      <section id="evidence">
+        <h2>Visual Evidence & Proof</h2>
+        <p class="muted">
+          Bewijs (visuals, screenshots, resultaten) om mijn rollen en skills direct aantoonbaar te maken.
+          Voeg hier je afbeeldingen en documenten toe als links of thumbnails.
+        </p>
+
+        <h3>Dark Tech Evidence</h3>
+        <ul>
+          <li>Testresultaten (grafieken: schermafstand, knoprespons, logica keuzes)</li>
+          <li>Testdocumenten (schermopstelling, knoppen, keuzemomenten)</li>
+          <li>Scene & audio-plannen (breakdowns, interaction/audio planning)</li>
+        </ul>
+
+        <h3>Internship Evidence</h3>
+        <ul>
+          <li>Final assessment workplace placement (screenshots)</li>
+          <li>Assessment research report internship (screenshots)</li>
+        </ul>
+      </section>
+
       <section id="tags">
-        <h2>Categories</h2>
+        <h2>Catagories</h2>
         <ul>
           <li>#Creative Technologist</li>
           <li>#User Research</li>
@@ -1001,18 +1042,25 @@
         <p>
           Ik kies projecten waarin ik niet alleen kan bouwen, maar vooral kan laten zien hoe ik kwaliteit lever:
           door te testen, te verbeteren en de ervaring scherp te maken voor gebruikers. Dit helpt mij om sterker te worden
-          als Software Engineer en als Creative Technologist in verschillende werkomgevingen.
+          als Software Engineer en als Creative Technologist in verschillende werk omgevingen.
         </p>
       </section>
 
       <section id="cv">
         <h2>CV & Links</h2>
-        <a href="https://www.linkedin.com/in/arif-sahin-91b785232/" target="_blank" rel="noopener" style="border-bottom:none;">
+        <a href="LinkedIn.pdf" style="border-bottom:none;">
           <button type="button">LinkedIn</button>
         </a>
         <a href="Arif Sahin.pdf" download="Arif_Sahin_CV.pdf" style="border-bottom:none;">
-          <button type="button">Download CV</button>
+          <button type="button">CV</button>
         </a>
+      </section>
+
+      <!-- ============================
+           BOTTOM EFFECT SECTION (NEW)
+      ============================ -->
+      <section id="bottom-effect" aria-label="Ambient animation">
+        <canvas id="bottomCanvas"></canvas>
       </section>
 
     </main>
@@ -1023,7 +1071,6 @@
 
   </div><!-- /#page -->
 
-  <!-- UPDATED: Gallery uses a1.png .. a6.png -->
   <section class="Gallery" id="gallery-1" aria-hidden="true">
     <div class="Gallery-header">
       <a class="Gallery-close" onclick="closeAll()" aria-label="Close gallery">×</a>
@@ -1044,26 +1091,6 @@
     </div>
   </section>
 
-  <!-- UPDATED: Gallery uses a9.png .. a14.png -->
-  <section class="Gallery" id="gallery-2" aria-hidden="true">
-    <div class="Gallery-header">
-      <a class="Gallery-close" onclick="closeAll()" aria-label="Close gallery">×</a>
-    </div>
-
-    <div class="Gallery-images">
-      <div class="Gallery-left">
-        <div class="Gallery-image" style="background-image:url('a9.png')"></div>
-        <div class="Gallery-image" style="background-image:url('a10.png')"></div>
-      </div>
-      <div class="Gallery-image Gallery-image--primary" style="background-image:url('a11.png')"></div>
-    </div>
-
-    <div class="Gallery-images">
-      <div class="Gallery-image" style="background-image:url('a12.png')"></div>
-      <div class="Gallery-image" style="background-image:url('a13.png')"></div>
-      <div class="Gallery-image" style="background-image:url('a14.png')"></div>
-    </div>
-  </section>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -1114,6 +1141,226 @@
       const insideImages = e.target.closest('.Gallery-images') || e.target.closest('.Gallery-header');
       if (!insideImages) closeAll();
     }, true);
+
+    // ============================
+    // Top Canvas animation (subtle flow)
+    // ============================
+    (function initCanvas(){
+      const canvas = document.getElementById("stage");
+      if (!canvas) return;
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      let width = 1200;
+      let height = 1200;
+
+      const resize = () => {
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        canvas.style.width = width + "px";
+        canvas.style.height = height + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+
+      resize();
+      window.addEventListener("resize", resize, { passive: true });
+
+      let t = 0;
+      const points = 140;
+
+      const draw = () => {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < points; i++) {
+          const x = 600 + Math.sin(t / 50 + i * 0.35) * (260 + (i % 7) * 8);
+          const y = 600 + Math.cos(t / 43 + i * 0.28) * (260 + (i % 9) * 7);
+
+          ctx.beginPath();
+          ctx.arc(x, y, 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(255,255,255,0.055)";
+          ctx.fill();
+        }
+
+        t += 1;
+        requestAnimationFrame(draw);
+      };
+
+      window.addEventListener("load", () => requestAnimationFrame(draw), { once: true });
+    })();
+
+    /* ===========================
+       Bottom Curl-Noise Effect (NEW)
+       Uses <canvas id="bottomCanvas">
+    ============================ */
+
+    (function(){
+      const canvas = document.getElementById("bottomCanvas");
+      if (!canvas) return;
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      function resizeCanvas(){
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvas.getBoundingClientRect();
+        canvas.width  = Math.round(rect.width * dpr);
+        canvas.height = Math.round(rect.height * dpr);
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+      }
+
+      window.addEventListener("resize", resizeCanvas, { passive:true });
+      resizeCanvas();
+
+      const w = () => canvas.getBoundingClientRect().width;
+      const h = () => canvas.getBoundingClientRect().height;
+
+      function Point(x,y){ this.x=x; this.y=y; }
+      Point.prototype.copy=function(p){ this.x=p.x; this.y=p.y; return this; };
+      Point.prototype.add=function(p){ this.x+=p.x; this.y+=p.y; return this; };
+      Point.prototype.clone=function(){ return new Point(this.x,this.y); };
+      Point.prototype.multiplyScalar=function(v){ this.x*=v; this.y*=v; return this; };
+      Point.prototype.length=function(){ return Math.sqrt(this.x*this.x + this.y*this.y); };
+      Point.prototype.normalize=function(){
+        const l = Math.sqrt(this.x*this.x + this.y*this.y) || 1;
+        this.x/=l; this.y/=l;
+        return this;
+      };
+
+      (function(global) {
+        var module = (global.noise = global.noise || {});
+        function Grad(x, y, z) { this.x = x; this.y = y; this.z = z; }
+        Grad.prototype.dot2 = function(x, y) { return this.x * x + this.y * y; };
+        var grad3 = [
+          new Grad(1, 1, 0), new Grad(-1, 1, 0), new Grad(1, -1, 0), new Grad(-1, -1, 0),
+          new Grad(1, 0, 1), new Grad(-1, 0, 1), new Grad(1, 0, -1), new Grad(-1, 0, -1),
+          new Grad(0, 1, 1), new Grad(0, -1, 1), new Grad(0, 1, -1), new Grad(0, -1, -1)
+        ];
+        var p = [151,160,137,91,90,15,131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23,190,6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,35,11,32,57,177,33,88,237,149,56,87,174,20,125,136,171,168,68,175,74,165,71,134,139,48,27,166,77,146,158,231,83,111,229,122,60,211,133,230,220,105,92,41,55,46,245,40,244,102,143,54,65,25,63,161,1,216,80,73,209,76,132,187,208,89,18,169,200,196,135,130,116,188,159,86,164,100,109,198,173,186,3,64,52,217,226,250,124,123,5,202,38,147,118,126,255,82,85,212,207,206,59,227,47,16,58,17,182,189,28,42,223,183,170,213,119,248,152,2,44,154,163,70,221,153,101,155,167,43,172,9,129,22,39,253,19,98,108,110,79,113,224,232,178,185,112,104,218,246,97,228,251,34,242,193,238,210,144,12,191,179,162,241,81,51,145,235,249,14,239,107,49,192,214,31,181,199,106,157,184,84,204,176,115,121,50,45,127,4,150,254,138,236,205,93,222,114,67,29,24,72,243,141,128,195,78,66,215,61,156,180];
+        var perm = new Array(512);
+        var gradP = new Array(512);
+
+        module.seed = function(seed) {
+          if (seed > 0 && seed < 1) seed *= 65536;
+          seed = Math.floor(seed);
+          if (seed < 256) seed |= seed << 8;
+          for (var i = 0; i < 256; i++) {
+            var v = (i & 1) ? (p[i] ^ (seed & 255)) : (p[i] ^ ((seed >> 8) & 255));
+            perm[i] = perm[i + 256] = v;
+            gradP[i] = gradP[i + 256] = grad3[v % 12];
+          }
+        };
+
+        module.seed(0);
+
+        function fade(t) { return t*t*t*(t*(t*6-15)+10); }
+        function lerp(a, b, t) { return (1 - t) * a + t * b; }
+
+        module.perlin2 = function(x, y) {
+          var X = Math.floor(x), Y = Math.floor(y);
+          x = x - X; y = y - Y;
+          X = X & 255; Y = Y & 255;
+          var n00 = gradP[X + perm[Y]].dot2(x, y);
+          var n01 = gradP[X + perm[Y + 1]].dot2(x, y - 1);
+          var n10 = gradP[X + 1 + perm[Y]].dot2(x - 1, y);
+          var n11 = gradP[X + 1 + perm[Y + 1]].dot2(x - 1, y - 1);
+          var u = fade(x);
+          return lerp(lerp(n00, n10, u), lerp(n01, n11, u), fade(y));
+        };
+      })(window);
+
+      function curlNoise(p, scale, delta) {
+        var p_x0 = noise.perlin2(scale * p.x - scale, p.y * scale);
+        var p_x1 = noise.perlin2(scale * p.x + scale, p.y * scale);
+        var p_y0 = noise.perlin2(scale * p.x, scale * p.y - scale);
+        var p_y1 = noise.perlin2(scale * p.x, scale * p.y + scale);
+        return new Point(p_y0 - p_y1, p_x0 - p_x1)
+          .normalize()
+          .multiplyScalar(1.0 / (2.0 * delta));
+      }
+
+      let points = [];
+      function initPoints(){
+        points = [];
+        const W = w(), H = h();
+        const radius = Math.min(W, H) / 2.3;
+        const count = 90;
+
+        for (let i = 0; i < count; i++) {
+          for (let j = 0; j < count; j++) {
+            var x = (j / count) * radius - radius / 2;
+            var y = (i / count) * radius - radius / 2;
+            var p = new Point(x, y);
+            p.origin = p.clone();
+            p.life = Math.random() * 60;
+            points.push(p);
+          }
+        }
+        return radius;
+      }
+
+      let radius = initPoints();
+      window.addEventListener("resize", () => { resizeCanvas(); radius = initPoints(); });
+
+      function raf(){
+        requestAnimationFrame(raf);
+
+        const W = w(), H = h();
+        ctx.save();
+
+        ctx.fillStyle = "#000";
+        ctx.globalAlpha = 0.08;
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.translate(W / 2, H / 2);
+        ctx.globalAlpha = 0.55;
+        ctx.strokeStyle = "rgba(255,255,255,0.35)";
+        ctx.lineWidth = 1;
+
+        var K = 25;
+        var scale = 0.06;
+        var time = Date.now() * 0.001;
+
+        var o = new Point(time * 10, time * 2);
+        o.add(curlNoise(o, 0.05, 2));
+
+        ctx.beginPath();
+
+        points.forEach(function(p) {
+          const n = p.clone().add(o);
+          var cp = curlNoise(n, scale, 1);
+          p.add(cp);
+
+          const length = p.length();
+          if (length > radius * 0.48) return;
+
+          const x = (p.x / (length + K)) * radius;
+          const y = (p.y / (length + K)) * radius;
+
+          ctx.moveTo(x, y);
+          ctx.lineTo(x + 1, y);
+
+          if (p.x > radius / 2) p.x -= radius;
+          if (p.x < -radius / 2) p.x += radius;
+          if (p.y > radius / 2) p.y -= radius;
+          if (p.y < -radius / 2) p.y += radius;
+
+          if (p.life-- < 0) {
+            p.copy(p.origin);
+            p.life = Math.random() * 120;
+          }
+        });
+
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      window.addEventListener("load", () => {
+        setTimeout(() => requestAnimationFrame(raf), 5200);
+      }, { once:true });
+
+    })();
   </script>
 
 </body>
