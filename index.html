@@ -529,15 +529,22 @@
       transition-delay: .03s;
     }
 
-    .Card-image{
-      position: relative;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-color: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.10);
-      overflow: hidden;
-    }
+  .Card-image{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  overflow: hidden;
+}
+
+.Card-shadow{
+  z-index: 1;
+}
+
 
     .Card-image::before{
       content:"";
