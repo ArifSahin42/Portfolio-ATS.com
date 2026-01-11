@@ -35,6 +35,13 @@
       line-height: 1.6;
     }
 
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    a:hover { border-bottom-color: var(--accent); }
+
     .wrap {
       max-width: var(--max);
       margin: 0 auto;
@@ -45,7 +52,7 @@
     h2 { font-size: 22px; margin-top: 0; }
     p { font-family: "Anonymous Pro", ui-monospace, monospace; }
 
-    .muted { color: var(--muted); }
+    .muted { color: var(--muted); margin: 10px 0 0; }
 
     /* ----------------------------
        HERO / THUMBNAIL
@@ -90,6 +97,203 @@
       color: var(--muted);
       text-align: center;
     }
+
+    /* ==========================================================
+       CSS-ONLY CAROUSEL (SCOPED)
+    ========================================================== */
+    @keyframes tonext {
+      75% { left: 0; }
+      95% { left: 100%; }
+      98% { left: 100%; }
+      99% { left: 0; }
+    }
+
+    @keyframes tostart {
+      75% { left: 0; }
+      95% { left: -300%; }
+      98% { left: -300%; }
+      99% { left: 0; }
+    }
+
+    @keyframes snap {
+      96% { scroll-snap-align: center; }
+      97% { scroll-snap-align: none; }
+      99% { scroll-snap-align: none; }
+      100% { scroll-snap-align: center; }
+    }
+
+    /* Keep carousel scrollbars hidden without affecting rest of page */
+    .carousel * {
+      box-sizing: border-box;
+      scrollbar-color: transparent transparent;
+      scrollbar-width: 0px;
+      -ms-overflow-style: none;
+    }
+    .carousel *::-webkit-scrollbar { width: 0; }
+    .carousel *::-webkit-scrollbar-track { background: transparent; }
+    .carousel *::-webkit-scrollbar-thumb { background: transparent; border: none; }
+
+    .carousel ol,
+    .carousel li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .carousel {
+      position: relative;
+      margin-top: 18px;
+      padding-top: 56.25%; /* 16:9 */
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.02);
+      overflow: hidden;
+      filter: drop-shadow(0 0 10px rgba(0,0,0,0.2));
+      perspective: 100px;
+    }
+
+    .carousel__viewport {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      overflow-x: scroll;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+    }
+
+    .carousel__slide {
+      position: relative;
+      flex: 0 0 100%;
+      width: 100%;
+      background: #0b0b0b;
+    }
+
+    /* Put your slide images later via background-image on .carousel__snapper */
+    .carousel__snapper {
+      position: absolute;
+      inset: 0;
+      scroll-snap-align: center;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    @media (hover: hover) {
+      .carousel__snapper {
+        animation-name: tonext, snap;
+        animation-timing-function: ease;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+      }
+      .carousel__slide:last-child .carousel__snapper {
+        animation-name: tostart, snap;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .carousel__snapper { animation-name: none; }
+    }
+
+    .carousel:hover .carousel__snapper,
+    .carousel:focus-within .carousel__snapper {
+      animation-name: none;
+    }
+
+    .carousel__navigation {
+      position: absolute;
+      right: 0;
+      bottom: 10px;
+      left: 0;
+      text-align: center;
+      z-index: 3;
+    }
+
+    .carousel__navigation-list,
+    .carousel__navigation-item {
+      display: inline-block;
+    }
+
+    .carousel__navigation-button {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background-color: rgba(255,255,255,0.25);
+      background-clip: content-box;
+      border: 6px solid transparent;
+      border-radius: 999px;
+      font-size: 0;
+      transition: transform 0.1s ease, background-color 0.1s ease;
+    }
+
+    .carousel__navigation-button:hover {
+      transform: scale(1.05);
+      background-color: rgba(255,255,255,0.55);
+    }
+
+    .carousel::before,
+    .carousel::after,
+    .carousel__prev,
+    .carousel__next {
+      position: absolute;
+      top: 50%;
+      width: 52px;
+      height: 52px;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      font-size: 0;
+      outline: 0;
+      z-index: 4;
+    }
+
+    .carousel__prev { left: 10px; }
+    .carousel__next { right: 10px; }
+
+    /* Clickable areas (invisible) */
+    .carousel__prev,
+    .carousel__next {
+      opacity: 0;
+    }
+
+    /* Visible arrow buttons */
+    .carousel::before,
+    .carousel::after {
+      content: '';
+      background-color: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(6px);
+      background-size: 18px 18px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      pointer-events: none;
+      transition: opacity .15s ease;
+      opacity: 0;
+    }
+
+    .carousel::before { left: 10px; }
+    .carousel::after  { right: 10px; }
+
+    .carousel::before {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
+    }
+
+    .carousel::after {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
+    }
+
+    .carousel:hover::before,
+    .carousel:hover::after {
+      opacity: 1;
+    }
+
+    @media (max-width: 520px) {
+      .carousel::before,
+      .carousel::after,
+      .carousel__prev,
+      .carousel__next {
+        width: 44px;
+        height: 44px;
+      }
+    }
   </style>
 </head>
 
@@ -132,6 +336,58 @@
         omgevingen om te controleren of functionaliteiten correct werkten en om mogelijke risico’s of fouten vroegtijdig te ontdekken.
         Door deze aanpak droeg ik bij aan een stabieler product en een hogere kwaliteit van de software voor mijn opdrachtgever.
       </p>
+    </section>
+
+    <!-- IMAGE SLIDER / CAROUSEL -->
+    <section>
+      <h2>Gallery</h2>
+      <p class="muted">Voeg later je screenshots toe in de slider.</p>
+
+      <section class="carousel" aria-label="Gallery">
+        <ol class="carousel__viewport">
+          <li id="carousel__slide1" tabindex="0" class="carousel__slide">
+            <div class="carousel__snapper">
+              <a href="#carousel__slide4" class="carousel__prev">Go to last slide</a>
+              <a href="#carousel__slide2" class="carousel__next">Go to next slide</a>
+            </div>
+          </li>
+
+          <li id="carousel__slide2" tabindex="0" class="carousel__slide">
+            <div class="carousel__snapper"></div>
+            <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
+            <a href="#carousel__slide3" class="carousel__next">Go to next slide</a>
+          </li>
+
+          <li id="carousel__slide3" tabindex="0" class="carousel__slide">
+            <div class="carousel__snapper"></div>
+            <a href="#carousel__slide2" class="carousel__prev">Go to previous slide</a>
+            <a href="#carousel__slide4" class="carousel__next">Go to next slide</a>
+          </li>
+
+          <li id="carousel__slide4" tabindex="0" class="carousel__slide">
+            <div class="carousel__snapper"></div>
+            <a href="#carousel__slide3" class="carousel__prev">Go to previous slide</a>
+            <a href="#carousel__slide1" class="carousel__next">Go to first slide</a>
+          </li>
+        </ol>
+
+        <aside class="carousel__navigation" aria-label="Carousel navigation">
+          <ol class="carousel__navigation-list">
+            <li class="carousel__navigation-item">
+              <a href="#carousel__slide1" class="carousel__navigation-button">Go to slide 1</a>
+            </li>
+            <li class="carousel__navigation-item">
+              <a href="#carousel__slide2" class="carousel__navigation-button">Go to slide 2</a>
+            </li>
+            <li class="carousel__navigation-item">
+              <a href="#carousel__slide3" class="carousel__navigation-button">Go to slide 3</a>
+            </li>
+            <li class="carousel__navigation-item">
+              <a href="#carousel__slide4" class="carousel__navigation-button">Go to slide 4</a>
+            </li>
+          </ol>
+        </aside>
+      </section>
     </section>
   </main>
 
