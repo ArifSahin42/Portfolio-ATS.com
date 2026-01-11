@@ -35,13 +35,6 @@
       line-height: 1.6;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-    a:hover { border-bottom-color: var(--accent); }
-
     .wrap {
       max-width: var(--max);
       margin: 0 auto;
@@ -52,47 +45,36 @@
     h2 { font-size: 22px; margin-top: 0; }
     p { font-family: "Anonymous Pro", ui-monospace, monospace; }
 
+    .muted { color: var(--muted); }
+
     /* ----------------------------
        HERO / THUMBNAIL
     -----------------------------*/
     .hero {
       height: 340px;
       width: 100%;
-      background-image: url('a15.png'); /* thumbnail image */
+      background-image: url('a15.png');
       background-size: cover;
       background-position: center;
       border-bottom: 1px solid var(--line);
-      position: relative;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.25),
-        rgba(5,5,5,0.9)
-      );
-    }
-
-    .hero-title {
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1;
+    /* ----------------------------
+       TITLE UNDER HERO
+    -----------------------------*/
+    .page-header {
+      margin-top: 36px;
+      margin-bottom: 36px;
       text-align: center;
-      width: min(900px, calc(100% - 40px));
     }
 
-    .muted { color: var(--muted); margin: 10px 0 0; }
+    .page-header p {
+      margin-top: 10px;
+    }
 
     /* ----------------------------
        CONTENT CONTAINER
     -----------------------------*/
-    main { padding-top: 10px; }
-
     section {
       margin-top: 36px;
       padding: 32px;
@@ -113,12 +95,15 @@
 
 <body>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-title">
-      <h1>Objective Platform Internship</h1>
-      <p class="muted">Internship die zich verdiept in QA en projectmatig testen van front/back-end code</p>
-    </div>
+  <!-- HERO / THUMBNAIL -->
+  <div class="hero"></div>
+
+  <!-- TITLE + DESCRIPTION -->
+  <div class="wrap page-header">
+    <h1>Objective Platform Internship</h1>
+    <p class="muted">
+      Internship die zich verdiept in QA en projectmatig testen van front/back-end code
+    </p>
   </div>
 
   <!-- CONTENT -->
@@ -138,13 +123,14 @@
     <section>
       <h2>Project Overview</h2>
       <p>
-        Tijdens mijn internship draaide ik mee in een professionele productomgeving waarin communicatie en samenwerking met developers, product owners en andere QA-engineers centraal stonden.
-        Hierbij nam ik steeds meer ownership over mijn taken en verantwoordelijkheden, van het voorbereiden van tests tot het signaleren en opvolgen van verbeterpunten.
+        Tijdens mijn internship draaide ik mee in een professionele productomgeving waarin communicatie en samenwerking met developers,
+        product owners en andere QA-engineers centraal stonden. Hierbij nam ik steeds meer ownership over mijn taken en verantwoordelijkheden.
       </p>
 
       <p>
-        Een belangrijk onderdeel van mijn werk was het opstellen en uitvoeren van testplannen. Ik testte het platform in verschillende omgevingen om te controleren of functionaliteiten correct werkten
-        en om mogelijke risico’s of fouten vroegtijdig te ontdekken. Door deze aanpak droeg ik bij aan een stabieler product en een hogere kwaliteit van de software voor mijn opdrachtgever.
+        Een belangrijk onderdeel van mijn werk was het opstellen en uitvoeren van testplannen. Ik testte het platform in verschillende
+        omgevingen om te controleren of functionaliteiten correct werkten en om mogelijke risico’s of fouten vroegtijdig te ontdekken.
+        Door deze aanpak droeg ik bij aan een stabieler product en een hogere kwaliteit van de software voor mijn opdrachtgever.
       </p>
     </section>
   </main>
