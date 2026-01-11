@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dark Tech Studio – Project</title>
+  <meta name="description" content="Verdiepende projectpagina over Dark Tech Studio – onderzoek, keuzes en leerpunten." />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050505;
+      --card: #0d0d0d;
+      --text: #ffffff;
+      --muted: #b5b5b5;
+      --line: #1f1f1f;
+      --accent: #ffffff;
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(800px 600px at 80% 10%, rgba(255,255,255,0.08), transparent 60%),
+        radial-gradient(600px 400px at 10% 90%, rgba(255,255,255,0.05), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    a:hover { border-bottom-color: var(--accent); }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    h1 { font-size: 32px; letter-spacing: 1px; }
+    h2 { font-size: 22px; margin-top: 0; }
+    p { font-family: "Anonymous Pro", ui-monospace, monospace; }
+
+    /* ----------------------------
+       HERO / THUMBNAIL
+    -----------------------------*/
+    .hero {
+      height: 340px;
+      width: 100%;
+      background-image: url('a7.png'); /* thumbnail image */
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.25),
+        rgba(5,5,5,0.9)
+      );
+    }
+
+    .hero-title {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      text-align: center;
+    }
+
+    /* ----------------------------
+       CONTENT CONTAINER
+    -----------------------------*/
+    section {
+      margin-top: 36px;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 30px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-title">
+      <h1>Dark Tech Studio</h1>
+      <p class="muted">Interactieve ervaring over keuzes, afleiding en gedrag</p>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <main class="wrap">
+    <section>
+      <h2>Project Overview</h2>
+      <p>
+        Dark Tech Studio is een interactieve game-ervaring die bewustwording creëert
+        rondom sociale isolatie, afleiding en keuzes in de openbare ruimte.
+      </p>
+
+      <p>
+        In dit project lag mijn focus op testen, observeren van gebruikersgedrag
+        en het verbeteren van de ervaring op basis van kwalitatieve feedback.
+      </p>
+
+      <!-- Je kunt hier later extra kopjes toevoegen -->
+      <!-- <h3>Research</h3> -->
+      <!-- <h3>Testing</h3> -->
+      <!-- <h3>Reflection</h3> -->
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Arif Sahin
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
