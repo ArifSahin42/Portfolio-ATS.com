@@ -78,44 +78,36 @@
     }
 
     /* =========================
-       CAROUSEL
+       MANUAL IMAGE SLIDER
     ========================= */
-    @keyframes tonext {
-      75% { left: 0; }
-      95% { left: 100%; }
-      99% { left: 0; }
-    }
-    @keyframes tostart {
-      75% { left: 0; }
-      95% { left: -300%; }
-      99% { left: 0; }
-    }
-    @keyframes snap {
-      96% { scroll-snap-align: center; }
-      100% { scroll-snap-align: center; }
-    }
-
     .carousel {
       position: relative;
       margin-top: 18px;
-      padding-top: 56.25%;
+      padding-top: 56.25%; /* 16:9 */
       border-radius: 16px;
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.02);
     }
 
     .carousel__viewport {
       position: absolute;
       inset: 0;
       display: flex;
-      overflow-x: scroll;
+      overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    .carousel__viewport::-webkit-scrollbar {
+      display: none;
     }
 
     .carousel__slide {
       flex: 0 0 100%;
       position: relative;
+      scroll-snap-align: center;
     }
 
     .carousel__snapper {
@@ -123,20 +115,6 @@
       inset: 0;
       background-size: cover;
       background-position: center;
-      scroll-snap-align: center;
-    }
-
-    @media (hover: hover) {
-      .carousel__snapper {
-        animation: tonext 4s ease infinite, snap 4s ease infinite;
-      }
-      .carousel__slide:last-child .carousel__snapper {
-        animation: tostart 4s ease infinite, snap 4s ease infinite;
-      }
-    }
-
-    .carousel:hover .carousel__snapper {
-      animation: none;
     }
 
     .carousel__navigation {
@@ -144,12 +122,13 @@
       bottom: 10px;
       width: 100%;
       text-align: center;
+      pointer-events: none;
     }
 
     .carousel__navigation-button {
       display: inline-block;
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       background: rgba(255,255,255,0.4);
       border-radius: 50%;
       margin: 0 4px;
@@ -159,8 +138,10 @@
 
 <body>
 
+  <!-- HERO -->
   <div class="hero"></div>
 
+  <!-- TITLE -->
   <div class="wrap page-header">
     <h1>Objective Platform Internship</h1>
     <p class="muted">Internship die zich verdiept in QA en projectmatig testen van front/back-end code</p>
@@ -174,15 +155,15 @@
         Ze ontwikkelen een data-gedreven platform waarmee bedrijven inzicht krijgen in de effectiviteit van hun campagnes.
       </p>
       <p>
-        Tijdens dit internship lag mijn focus op testen, het schrijven van testplannen en het leren van de kernpunten van QA engineering.
+        Tijdens dit internship lag mijn focus op testen, schrijven van testplannen en het leren van de kernpunten van QA engineering.
       </p>
     </section>
 
     <section>
       <h2>Project Overview</h2>
       <p>
-        Tijdens mijn internship werkte ik in een professionele productomgeving samen met developers, product owners en QA-engineers.
-        Ik nam steeds meer ownership over mijn taken en verantwoordelijkheden.
+        Tijdens mijn internship draaide ik mee in een professionele productomgeving waarin communicatie en samenwerking met developers,
+        product owners en andere QA-engineers centraal stonden. Ik nam steeds meer ownership over mijn taken.
       </p>
       <p>
         Ik testte het platform in verschillende omgevingen, signaleerde bugs en droeg bij aan een stabieler en kwalitatief beter product.
@@ -191,6 +172,7 @@
 
     <section>
       <h2>Gallery</h2>
+
       <div class="carousel">
         <div class="carousel__viewport">
           <div class="carousel__slide">
